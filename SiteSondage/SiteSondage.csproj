@@ -106,6 +106,9 @@
     <Content Include="Views\Sondage\PageSondage.cshtml" />
     <Content Include="Views\Sondage\PageChoix.cshtml" />
     <Content Include="Views\Sondage\PageSupprimer.cshtml" />
+    <Content Include="Views\Sondage\PageVoter.cshtml" />
+    <Content Include="Views\Sondage\PageVoteEffectue.cshtml" />
+    <Content Include="Views\Sondage\PageResultat.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

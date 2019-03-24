@@ -25,5 +25,17 @@ namespace SiteSondage.Controllers
         {
             return View();
         }
+        public ActionResult PageVoter()
+        {
+            return View();
+        }
+        public ActionResult PageVoteEffectue()
+        {
+            return View();
+        }
+        public ActionResult PageResultat()
+        {
+            return View();
+        }
     }
 }

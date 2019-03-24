@@ -14,7 +14,7 @@
 <body>
     <div>
 
-        <h1 style="text-align:center;margin-top:50px">
+        <h1 style="text-align:center;margin-top:10px">
             Votre Formulaire de sondage
         </h1>
         <form style="text-align:center">
@@ -22,12 +22,13 @@
             Réponse 1: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"><br />
             Réponse 2: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"><br />
             Réponse 3: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"><br />
+            Réponse 4: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"><br />
             <div style="margin-top:50px">
                 <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
                 <label for="subscribeNews">souhaitez vous mettre un choix multiple à votre sondage ?</label>
             </div>
-            
-                <input style="margin-top:20px" type="submit" value="Crée sondage">
+
+            <a href="@Url.Action("PageChoix")" style="margin-top:20px" type="button" class="btn btn-primary btn-lg">Crée Sondage</a>
         </form>
 
     </div>
