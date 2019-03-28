@@ -14,18 +14,43 @@
 <body>
     <div>
 
-        <h1 style="text-align:center;margin-top:10px">
+        <h1 style="text-align:center;margin-top:50px">
             Votre Formulaire de sondage
         </h1>
-        <form style="text-align:center">
-            Question: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="fname" value="@Model.Question"><br />
-            Réponse 1: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"value="@Model.Choix1"><br />
-            Réponse 2: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"value="@Model.Choix2"><br />
-            Réponse 3: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"value="@Model.Choix3"><br />
-            Réponse 4: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"value="@Model.Choix4"><br />
-            <div style="margin-top:50px">
-                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                <label for="subscribeNews">souhaitez vous mettre un choix multiple à votre sondage ?</label>
+        <form style="margin-left:700px; margin-top:150px">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4"><b>Question</b></label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Votre question">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4"><b>Choix 1</b></label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Choix de réponse">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4"><b>Choix 2</b></label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Choix de réponse">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4"><b>Choix 3</b></label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Choix de réponse">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4"><b>Choix 4</b></label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Choix de reponse">
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Choix Multiple</label>
             </div>
 
             <a href="@Url.Action("PageChoix")" style="margin-top:20px" type="button" class="btn btn-primary btn-lg">Crée Sondage</a>

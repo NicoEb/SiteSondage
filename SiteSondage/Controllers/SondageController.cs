@@ -10,7 +10,7 @@ namespace SiteSondage.Controllers
 {
     public class SondageController : Controller
     {
-        const string ChaineConnexionBDD = "Data Source=ADMIN-PC;Initial Catalog = SondageBDD; Integrated Security = True";
+        const string ChaineConnexionBDD = @"server=.\sqlexpress;Initial Catalog=SondageBDD;Integrated Security=True";
         public ActionResult PageAccueil()
         {
             return View();

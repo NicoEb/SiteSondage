@@ -13,16 +13,29 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <div style="text-align:center;margin-top:50px">
+    <div style="text-align:center;margin-top:150px">
 
         <h1>RESULTAT DU SONDAGE</h1>
 
     </div>
-    <div>
-        <b style="margin-left:500px">Nombre de Votants : </b><b>@Model.NombreVotant</b>
+    
+    <div style="text-align:center;margin-top:50px">
+        <b>
+            @if (Model.ChoixMultiple == false)
+            {
+                <span>INFO : sondage à choix unique</span>
+            }
+            else
+            {
+                <span>INFO : sondage à choix multiple</span>
+            }
+
+        </b>
+        <b> et nombre de Votants : </b><b>@Model.NombreVotant</b>
     </div>
-    <div style="margin-left:500px">
-        <b style="margin-right:10px">@Model.Choix1</b> <progress style="margin-top:50px" value="100" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix1</b><b>%</b><br />
+
+    <div style="text-align:center">
+        <b style="margin-right:10px">@Model.Choix1</b> <progress style="margin-top:100px" value="100" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix1</b><b>%</b><br />
         <b style="margin-right:10px">@Model.Choix2</b> <progress style="margin-top:50px" value="0" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix2</b><b>%</b><br />
         <b style="margin-right:10px">@Model.Choix3</b> <progress style="margin-top:50px" value="0" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix3</b><b>%</b><br />
         <b style="margin-right:10px">@Model.Choix4</b> <progress style="margin-top:50px" value="0" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix4</b><b>%</b><br />
