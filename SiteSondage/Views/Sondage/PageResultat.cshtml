@@ -1,4 +1,5 @@
-﻿
+﻿@model SiteSondage.Models.ClassSondage
+
 @{
     Layout = null;
 }
@@ -18,17 +19,17 @@
 
     </div>
     <div>
-        <b style="margin-left:150px">Nombre de Votants :</b><b>1</b>
+        <b style="margin-left:150px">Nombre de Votants : </b><b>@Model.NombreVotant</b>
     </div>
     <div style="margin-left:150px">
-        <b style="margin-right:10px">Choix 1</b> <progress style="margin-top:50px" value="70" max="100">70 %</progress><b style="margin-left:10px">100%</b><br />
-        <b style="margin-right:10px">Choix 2</b> <progress style="margin-top:50px" value="70" max="100">70 %</progress><b style="margin-left:10px">100%</b><br />
-        <b style="margin-right:10px">Choix 3</b> <progress style="margin-top:50px" value="70" max="100">70 %</progress><b style="margin-left:10px">100%</b><br />
-        <b style="margin-right:10px">Choix 4</b> <progress style="margin-top:50px" value="70" max="100">70 %</progress><b style="margin-left:10px">100%</b><br />
+        <b style="margin-right:10px">@Model.Choix1</b> <progress style="margin-top:50px" value="70" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix1</b><b>%</b><br />
+        <b style="margin-right:10px">@Model.Choix2</b> <progress style="margin-top:50px" value="70" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix2</b><b>%</b><br />
+        <b style="margin-right:10px">@Model.Choix3</b> <progress style="margin-top:50px" value="70" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix3</b><b>%</b><br />
+        <b style="margin-right:10px">@Model.Choix4</b> <progress style="margin-top:50px" value="70" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix4</b><b>%</b><br />
     </div>
 
     <div style="text-align:right"> <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageAccueil")" type="button" class="btn btn-danger btn-lg">Retour Accueil</a></div>
-   
+
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

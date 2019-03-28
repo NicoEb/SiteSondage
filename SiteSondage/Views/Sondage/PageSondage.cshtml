@@ -1,4 +1,4 @@
-﻿
+﻿@model SiteSondage.Models.ClassSondage
 @{
     Layout = null;
 }
@@ -18,11 +18,11 @@
             Votre Formulaire de sondage
         </h1>
         <form style="text-align:center">
-            Question: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="fname"><br />
-            Réponse 1: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"><br />
-            Réponse 2: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"><br />
-            Réponse 3: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"><br />
-            Réponse 4: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"><br />
+            Question: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="fname" value="@Model.Question"><br />
+            Réponse 1: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"value="@Model.Choix1"><br />
+            Réponse 2: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"value="@Model.Choix2"><br />
+            Réponse 3: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"value="@Model.Choix3"><br />
+            Réponse 4: <input style="margin-top:50px;width: 300px; height: 30px;" type="text" name="lname"value="@Model.Choix4"><br />
             <div style="margin-top:50px">
                 <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
                 <label for="subscribeNews">souhaitez vous mettre un choix multiple à votre sondage ?</label>
