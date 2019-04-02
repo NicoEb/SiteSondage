@@ -39,10 +39,18 @@ namespace SiteSondage.Controllers
         }
         public ActionResult PageResultat()
         {
-            ClassSondage resultat = DataAcces.RecupererEnBdd();
+            ClassResultat resultat = DataAcces.RecupererEnBdd2();
             return View(resultat);
         }
-       
-        
+        public ActionResult CreationSondage()
+        {
+            return RedirectToAction("ConfirmationCreationSondage");
+        }
+        public ActionResult ConfirmationCreationSondage()
+        {
+            return View();
+        }
+
+
     }
 }

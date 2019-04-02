@@ -8,7 +8,7 @@ namespace SiteSondage.Models
 {
     public class DataAcces
     {
-        const string ChaineConnexionBDD = @"server=.\sqlexpress;Initial Catalog=SondageBDD;Integrated Security=True";
+        const string ChaineConnexionBDD = @"server=ADMIN-PC;Initial Catalog=SondageBDD;Integrated Security=True";
         public static ClassSondage RecupererEnBdd()
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -78,6 +78,60 @@ namespace SiteSondage.Models
                 return vote;
 
             }
+
+        }
+        public static ClassResultat RecupererEnBdd2()
+        {
+            using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
+            {
+                connection.Open();
+
+                SqlCommand requeteSQL = new SqlCommand(@"SELECT Question,Choix1,Choix2,Choix3,Choix4,ChoixMultiple,ResultatChoix1,ResultatChoix2,ResultatChoix3,ResultatChoix4,NombreDeVotant FROM Sondage INNER JOIN Resultats ON IdSondage = FK_Id_sondage", connection);
+
+
+                SqlDataReader reader = requeteSQL.ExecuteReader();
+
+                reader.Read();
+
+
+                string question = reader.GetString(0);
+                string choix1 = reader.GetString(1);
+                string choix2 = reader.GetString(2);
+                string choix3 = reader.GetString(3);
+                string choix4 = reader.GetString(4);
+                bool choixMultiple = reader.GetBoolean(5);
+                int nombreVotant = reader.GetInt32(6);
+                int resultatChoix1 = reader.GetInt32(7);
+                int resultatChoix2 = reader.GetInt32(8);
+                int resultatChoix3 = reader.GetInt32(9);
+                int resultatChoix4 = reader.GetInt32(10);
+
+
+
+                ClassSondage sondage = new ClassSondage(question, choix1, choix2, choix3, choix4, choixMultiple);
+                ClassResultat resultat = new ClassResultat(sondage,resultatChoix1,resultatChoix2,resultatChoix3,resultatChoix4,nombreVotant);
+
+                return resultat;
+
+            }
+
+        }
+        public static void InsererEnBDD(string question, string choix1, string choix2, string choix3, string choix4)
+        {
+            SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
+
+            connection.Open();
+            
+            SqlCommand requeteSQL = new SqlCommand("INSERT INTO Sondage(Question,Choix1,Choix2) VALUES @question,@choix1,@choix2,@choix3,@choix4", connection);
+
+            requeteSQL.Parameters.AddWithValue("@question", question);
+            requeteSQL.Parameters.AddWithValue("@choix1", choix1);
+            requeteSQL.Parameters.AddWithValue("@choix1", choix2);
+            requeteSQL.Parameters.AddWithValue("@choix1", choix3);
+            requeteSQL.Parameters.AddWithValue("@choix1", choix4);
+            requeteSQL.ExecuteReader();
+            connection.Close();
+
 
         }
     }
