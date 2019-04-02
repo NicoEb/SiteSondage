@@ -1,4 +1,4 @@
-﻿@model SiteSondage.Models.ClassSondage
+﻿@model SiteSondage.Models.ClassResultat
 
 @{
     Layout = null;
@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <div style="text-align:center;margin-top:150px">
+    <div style="text-align:center;margin-top:5%">
 
         <h1>RESULTAT DU SONDAGE</h1>
 
     </div>
     
-    <div style="text-align:center;margin-top:50px">
+    <div style="text-align:center;margin-top:3%">
         <b>
-            @if (Model.ChoixMultiple == false)
+            @if (Model.Sondage.ChoixMultiple == false)
             {
                 <span>INFO : sondage à choix unique</span>
             }
@@ -35,10 +35,10 @@
     </div>
 
     <div style="text-align:center">
-        <b style="margin-right:10px">@Model.Choix1</b> <progress style="margin-top:100px" value="100" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix1</b><b>%</b><br />
-        <b style="margin-right:10px">@Model.Choix2</b> <progress style="margin-top:50px" value="0" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix2</b><b>%</b><br />
-        <b style="margin-right:10px">@Model.Choix3</b> <progress style="margin-top:50px" value="0" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix3</b><b>%</b><br />
-        <b style="margin-right:10px">@Model.Choix4</b> <progress style="margin-top:50px" value="0" max="100">70 %</progress><b style="margin-left:10px">@Model.ResultatChoix4</b><b>%</b><br />
+        <b style="margin-right:1%">@Model.Sondage.Choix1</b> <progress style="margin-top:5%" value="100" max="100">70 %</progress><b style="margin-left:1%">@Model.ResultatChoix1</b><b>%</b><br />
+        <b style="margin-right:1%">@Model.Sondage.Choix2</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">@Model.ResultatChoix2</b><b>%</b><br />
+        <b style="margin-right:1%">@Model.Sondage.Choix3</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">@Model.ResultatChoix3</b><b>%</b><br />
+        <b style="margin-right:1%">@Model.Sondage.Choix4</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">@Model.ResultatChoix4</b><b>%</b><br />
     </div>
 
     <div style="text-align:right"> <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageAccueil")" type="button" class="btn btn-danger btn-lg">Retour Accueil</a></div>
