@@ -100,6 +100,7 @@
     <Compile Include="Models\ClassVoter.cs" />
     <Compile Include="Models\ClassResultat.cs" />
     <Compile Include="Models\ClassSondage.cs" />
+    <Compile Include="Models\CreationSondage.cs" />
     <Compile Include="Models\DataAcces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

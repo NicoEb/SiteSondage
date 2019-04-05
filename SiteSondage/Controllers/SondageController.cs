@@ -42,9 +42,12 @@ namespace SiteSondage.Controllers
             ClassResultat resultat = DataAcces.RecupererEnBdd2();
             return View(resultat);
         }
-        public ActionResult CreationSondage()
+        public ActionResult CreationSondage(string Question,string Choix1,string Choix2,string Choix3,string Choix4)
         {
-            return RedirectToAction("ConfirmationCreationSondage");
+            ClassSondage sondage = new ClassSondage(Question,Choix1,Choix2,Choix3,Choix4);
+            CreationSondage Sondage = new CreationSondage(sondage);
+            DataAcces.InsererEnBDD(sondage);
+            return RedirectToAction("PageSondage");
         }
         public ActionResult ConfirmationCreationSondage()
         {

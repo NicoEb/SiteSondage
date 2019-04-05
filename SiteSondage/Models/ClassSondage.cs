@@ -23,5 +23,14 @@ namespace SiteSondage.Models
             Choix4 = choix4;
             ChoixMultiple = choixMultiple;
         }
+
+        public ClassSondage(string question, string choix1, string choix2, string choix3, string choix4)
+        {
+            Question = question;
+            Choix1 = choix1;
+            Choix2 = choix2;
+            Choix3 = choix3;
+            Choix4 = choix4;
+        }
     }
 }

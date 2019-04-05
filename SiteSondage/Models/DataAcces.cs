@@ -116,19 +116,19 @@ namespace SiteSondage.Models
             }
 
         }
-        public static void InsererEnBDD(string question, string choix1, string choix2, string choix3, string choix4)
+        public static void InsererEnBDD(ClassSondage nouveauSondage)
         {
             SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
 
             connection.Open();
             
-            SqlCommand requeteSQL = new SqlCommand("INSERT INTO Sondage(Question,Choix1,Choix2) VALUES @question,@choix1,@choix2,@choix3,@choix4", connection);
+            SqlCommand requeteSQL = new SqlCommand("INSERT INTO Sondage(Question,Choix1,Choix2,Choix3,Choix4) VALUES @question,@choix1,@choix2,@choix3,@choix4", connection);
 
-            requeteSQL.Parameters.AddWithValue("@question", question);
-            requeteSQL.Parameters.AddWithValue("@choix1", choix1);
-            requeteSQL.Parameters.AddWithValue("@choix1", choix2);
-            requeteSQL.Parameters.AddWithValue("@choix1", choix3);
-            requeteSQL.Parameters.AddWithValue("@choix1", choix4);
+            requeteSQL.Parameters.AddWithValue("@question", nouveauSondage.Question);
+            requeteSQL.Parameters.AddWithValue("@choix1", nouveauSondage.Choix1);
+            requeteSQL.Parameters.AddWithValue("@choix1", nouveauSondage.Choix2);
+            requeteSQL.Parameters.AddWithValue("@choix1", nouveauSondage.Choix3);
+            requeteSQL.Parameters.AddWithValue("@choix1", nouveauSondage.Choix4);
             requeteSQL.ExecuteReader();
             connection.Close();
 
