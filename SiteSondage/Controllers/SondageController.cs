@@ -47,7 +47,7 @@ namespace SiteSondage.Controllers
             ClassSondage sondage = new ClassSondage(Question,Choix1,Choix2,Choix3,Choix4);
             CreationSondage Sondage = new CreationSondage(sondage);
             DataAcces.InsererEnBDD(sondage);
-            return RedirectToAction("PageSondage");
+            return RedirectToAction("PageChoix");
         }
         public ActionResult ConfirmationCreationSondage()
         {
