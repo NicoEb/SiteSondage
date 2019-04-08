@@ -10,17 +10,17 @@ namespace SiteSondage.Controllers
 {
     public class SondageController : Controller
     {
-        
+
         public ActionResult PageAccueil()
         {
             return View();
         }
         public ActionResult PageSondage()
         {
-            ClassSondage sondage = DataAcces.RecupererEnBdd();
-            return View(sondage);
+            
+            return View();
         }
-        public ActionResult PageChoix()
+        public ActionResult PageChoix(int idSondage)
         {
             return View();
         }
@@ -30,8 +30,8 @@ namespace SiteSondage.Controllers
         }
         public ActionResult PageVoter()
         {
-            ClassVoter vote = DataAcces.RecupererEnBdd1();
-            return View(vote);
+           
+            return View();
         }
         public ActionResult PageVoteEffectue()
         {
@@ -39,21 +39,39 @@ namespace SiteSondage.Controllers
         }
         public ActionResult PageResultat()
         {
-            ClassResultat resultat = DataAcces.RecupererEnBdd2();
-            return View(resultat);
-        }
-        public ActionResult CreationSondage(string Question,string Choix1,string Choix2,string Choix3,string Choix4)
-        {
-            ClassSondage sondage = new ClassSondage(Question,Choix1,Choix2,Choix3,Choix4);
-            CreationSondage Sondage = new CreationSondage(sondage);
-            DataAcces.InsererEnBDD(sondage);
-            return RedirectToAction("PageChoix");
-        }
-        public ActionResult ConfirmationCreationSondage()
-        {
+            
             return View();
         }
+        public ActionResult CreationSondage(int? IdSondage, string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
+        {
+            bool choixMultiple = ChoixMultiplePeutEtreNull.GetValueOrDefault(false);
+
+            ClassSondage sondage = new ClassSondage(IdSondage, Question, Choix1, Choix2, Choix3, Choix4, choixMultiple);
+            CreationSondage Sondage = new CreationSondage(sondage);
+            DataAcces.InsererEnBDD(sondage);
+
+
+
+            if (DataAcces.RecupererIdLivreSondade(sondage, out ClassSondage idSondage))
+            {
+                return RedirectToAction("PageVoter", new { idSondage = sondage.IdSondage });
+
+            }
+            else
+            {
+                string messageErreur = "Probleme en recuperant Id du Livre";
+                return RedirectToAction("Erreur", new { messageErreur = messageErreur });
+            }
+
+
+        }
+
+
+
 
 
     }
+
+
+
 }
