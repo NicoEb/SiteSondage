@@ -42,26 +42,18 @@ namespace SiteSondage.Controllers
             
             return View();
         }
-        public ActionResult CreationSondage(int? IdSondage, string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
+        public ActionResult CreationSondage( string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
         {
             bool choixMultiple = ChoixMultiplePeutEtreNull.GetValueOrDefault(false);
 
-            ClassSondage sondage = new ClassSondage(IdSondage, Question, Choix1, Choix2, Choix3, Choix4, choixMultiple);
+            ClassSondage sondage = new ClassSondage( Question, Choix1, Choix2, Choix3, Choix4, choixMultiple);
             CreationSondage Sondage = new CreationSondage(sondage);
-            DataAcces.InsererEnBDD(sondage);
+             int  idSondageCree = DataAcces.InsererEnBDD(sondage);
+            
+            
+             return RedirectToAction("PageVoter", new { idSondage = idSondageCree });
 
-
-
-            if (DataAcces.RecupererIdLivreSondade(sondage, out ClassSondage idSondage))
-            {
-                return RedirectToAction("PageVoter", new { idSondage = sondage.IdSondage });
-
-            }
-            else
-            {
-                string messageErreur = "Probleme en recuperant Id du Livre";
-                return RedirectToAction("Erreur", new { messageErreur = messageErreur });
-            }
+          
 
 
         }

@@ -143,15 +143,15 @@ namespace SiteSondage.Models
 //        }   */
 
 
-        public static void InsererEnBDD(ClassSondage nouveauSondage)
+        public static int InsererEnBDD(ClassSondage nouveauSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
             {
-               // SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
+               
 
                 connection.Open();
 
-                SqlCommand requete = new SqlCommand("INSERT INTO Sondage(Question,Choix1,Choix2,Choix3,Choix4,ChoixMultiple) VALUES(@question,@choix1,@choix2,@choix3,@choix4,@choixM)", connection);
+                SqlCommand requete = new SqlCommand("INSERT INTO Sondage(Question,Choix1,Choix2,Choix3,Choix4,ChoixMultiple) OUTPUT Inserted.IdSondage VALUES  (@question,@choix1,@choix2,@choix3,@choix4,@choixM)", connection);
 
                 requete.Parameters.AddWithValue("@question", nouveauSondage.Question);
                 requete.Parameters.AddWithValue("@choix1", nouveauSondage.Choix1);
@@ -159,42 +159,20 @@ namespace SiteSondage.Models
                 requete.Parameters.AddWithValue("@choix3", nouveauSondage.Choix3);
                 requete.Parameters.AddWithValue("@choix4", nouveauSondage.Choix4);
                 requete.Parameters.AddWithValue("@choixM", nouveauSondage.ChoixMultiple);
+                int idInsere = (int)requete.ExecuteScalar();
+                
+                return idInsere;
 
-                requete.ExecuteNonQuery();
-                connection.Close();
+               
+            
 
             }
 
         }       
 
-        //Recuperation de l'id d'un sondage  
+        
 
-        public static bool RecupererIdLivreSondade(ClassSondage sondage, out ClassSondage detailModel)
-        {
-
-            SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
-            connection.Open();
-            SqlCommand newrequete =
-                new SqlCommand("SELECT TOP 1 IdSondage FROM Sondage WHERE Question = @question", connection);
-           newrequete.Parameters.AddWithValue("@question", sondage.Question);
-          
-            SqlDataReader dataReader = newrequete.ExecuteReader();
-
-            if (dataReader.Read())
-            {
-
-                int idSondage = (int)dataReader["IdSondage"];
-
-                detailModel = new ClassSondage(sondage.IdSondage, sondage.Question, sondage.Choix1, sondage.Choix2,sondage.Choix3,sondage.Choix4,sondage.ChoixMultiple);
-
-                return true;
-            }
-            else
-            {
-                detailModel = null;
-                return false;
-            }
-        }
+       
 
 
 
