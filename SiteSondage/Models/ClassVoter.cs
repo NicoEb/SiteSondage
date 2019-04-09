@@ -7,8 +7,8 @@ namespace SiteSondage.Models
 {
     public class ClassVoter
     {
-        public ClassSondage Vote { get; private set; }
-        public int NombreVotant { get; private set; }
+        public ClassSondage Vote { get;  set; }
+        public int NombreVotant { get; set; }
 
         public ClassVoter(ClassSondage vote, int nombreVotant)
         {

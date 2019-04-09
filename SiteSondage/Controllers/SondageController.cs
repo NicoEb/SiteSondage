@@ -20,7 +20,7 @@ namespace SiteSondage.Controllers
             
             return View();
         }
-        public ActionResult PageChoix(int idSondage)
+        public ActionResult PageChoix()
         {
             return View();
         }
@@ -28,10 +28,10 @@ namespace SiteSondage.Controllers
         {
             return View();
         }
-        public ActionResult PageVoter()
+        public ActionResult PageVoter(int idSondage)
         {
-           
-            return View();
+            ClassSondage sondage = DataAcces.RecupererEnBdd(idSondage);
+            return View(sondage);
         }
         public ActionResult PageVoteEffectue()
         {
@@ -48,10 +48,10 @@ namespace SiteSondage.Controllers
 
             ClassSondage sondage = new ClassSondage( Question, Choix1, Choix2, Choix3, Choix4, choixMultiple);
             CreationSondage Sondage = new CreationSondage(sondage);
-             int  idSondageCree = DataAcces.InsererEnBDD(sondage);
+             int idSondageCree = DataAcces.InsererEnBDD(sondage);
             
             
-             return RedirectToAction("PageVoter", new { idSondage = idSondageCree });
+             return RedirectToAction("PageChoix", new { idSondage = idSondageCree });
 
           
 

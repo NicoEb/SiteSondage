@@ -1,4 +1,4 @@
-﻿@model SiteSondage.Models.ClassVoter
+﻿@model SiteSondage.Models.ClassSondage
 @{
     Layout = null;
 }
@@ -23,16 +23,16 @@
         <div class="form-row" style="margin-top:3%">
             <div class="form-group col-md-6">
                 <label for="inputEmail4"><b>Question</b></label>
-                <input type="email" class="form-control" id="inputEmail4" value="@Model.Vote.Question">
+                <input type="text" class="form-control" id="inputEmail4" value="@Model.Question">
             </div>
         </div>
         <div style="margin-top:2%">
-            <b> Nombre de votant : </b><b>@Model.NombreVotant</b>
+            <b> Nombre de votant : </b><b></b>
         </div>
 
         <div style="margin-top:1%">
             <b>
-                @if (Model.Vote.ChoixMultiple == false)
+                @if (Model.ChoixMultiple == false)
                 {
                     <span>INFO : sondage à choix unique</span>
                 }
@@ -45,19 +45,19 @@
         </div>
         <div class="custom-control custom-checkbox" style="margin-top:5%">
             <input type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">@Model.Vote.Choix1</label>
+            <label class="custom-control-label" for="customCheck1">@Model.Choix1</label>
         </div>
         <div class="custom-control custom-checkbox"style="margin-top:5%">
             <input type="checkbox" class="custom-control-input" id="customCheck2">
-            <label class="custom-control-label" for="customCheck2">@Model.Vote.Choix2</label>
+            <label class="custom-control-label" for="customCheck2">@Model.Choix2</label>
         </div>
         <div class="custom-control custom-checkbox"style="margin-top:5%">
             <input type="checkbox" class="custom-control-input" id="customCheck3">
-            <label class="custom-control-label" for="customCheck3">@Model.Vote.Choix3</label>
+            <label class="custom-control-label" for="customCheck3">@Model.Choix3</label>
         </div>
         <div class="custom-control custom-checkbox"style="margin-top:5%">
             <input type="checkbox" class="custom-control-input" id="customCheck4">
-            <label class="custom-control-label" for="customCheck4">@Model.Vote.Choix4</label>
+            <label class="custom-control-label" for="customCheck4">@Model.Choix4</label>
         </div>
 
         <a style="margin-top:5%;margin-right:5%" href="@Url.Action("PageVoteEffectue")" type="button" class="btn btn-primary btn-lg">Voter</a>

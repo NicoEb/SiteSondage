@@ -15,9 +15,21 @@ namespace SiteSondage.Models
         public string Choix4 { get; private set; }
         public bool ChoixMultiple { get; private set; }
 
-        public ClassSondage( string question, string choix1, string choix2, string choix3, string choix4, bool choixMultiple)
+        public int NombreVotant { get; private set; }
+
+        public ClassSondage(string question, string choix1, string choix2, string choix3, string choix4, bool choixMultiple, int nombreVotant)
         {
-            
+            Question = question;
+            Choix1 = choix1;
+            Choix2 = choix2;
+            Choix3 = choix3;
+            Choix4 = choix4;
+            ChoixMultiple = choixMultiple;
+            NombreVotant = nombreVotant;
+        }
+
+        public ClassSondage(string question, string choix1, string choix2, string choix3, string choix4, bool choixMultiple)
+        {
             Question = question;
             Choix1 = choix1;
             Choix2 = choix2;
