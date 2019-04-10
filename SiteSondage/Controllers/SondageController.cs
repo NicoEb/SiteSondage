@@ -34,6 +34,13 @@ namespace SiteSondage.Controllers
             
             return View(DataAcces.RecupererEnBdd(idSondage));
         }
+        public ActionResult RecuperationVote(int idSondage, int checkbox1,int checkbox2, int checkbox3,int checkbox4)
+        {
+            
+            ClassResultat vote = new ClassResultat(checkbox1, checkbox2, checkbox3, checkbox4);
+            DataAcces.InsererResultatEnBDD(vote);
+            return RedirectToAction("PageVoteEffectue");
+        }
         public ActionResult PageVoteEffectue()
         {
             return View();
