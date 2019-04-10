@@ -7,7 +7,7 @@ namespace SiteSondage.Models
 {
     public class ClassSondage
     {
-        
+        public int IdSondage { get; private set; }
         public string Question { get; private set; }
         public string Choix1 { get; private set; }
         public string Choix2 { get; private set; }
@@ -17,25 +17,18 @@ namespace SiteSondage.Models
 
         public int NombreVotant { get; private set; }
 
-        public ClassSondage(string question, string choix1, string choix2, string choix3, string choix4, bool choixMultiple, int nombreVotant)
+
+        public ClassSondage(int idSondage, string question, string choix1, string choix2, string choix3, string choix4, bool choixMultiple)
         {
+            IdSondage = idSondage;
             Question = question;
             Choix1 = choix1;
             Choix2 = choix2;
             Choix3 = choix3;
             Choix4 = choix4;
             ChoixMultiple = choixMultiple;
-            NombreVotant = nombreVotant;
         }
 
-        public ClassSondage(string question, string choix1, string choix2, string choix3, string choix4, bool choixMultiple)
-        {
-            Question = question;
-            Choix1 = choix1;
-            Choix2 = choix2;
-            Choix3 = choix3;
-            Choix4 = choix4;
-            ChoixMultiple = choixMultiple;
-        }
+        
     }
 }

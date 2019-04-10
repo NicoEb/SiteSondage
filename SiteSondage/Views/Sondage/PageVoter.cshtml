@@ -34,31 +34,51 @@
             <b>
                 @if (Model.ChoixMultiple == false)
                 {
+
                     <span>INFO : sondage à choix unique</span>
+
+                    <div class="custom-control custom-checkbox" style="margin-top:5%">
+                        <input type="radio" name="checkbox1" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">@Model.Choix1</label>
+                    </div>
+                    <div class="custom-control custom-checkbox" style="margin-top:5%">
+                        <input type="radio" name="checkbox1" class="custom-control-input" id="customCheck2">
+                        <label class="custom-control-label" for="customCheck2">@Model.Choix2</label>
+                    </div>
+                    <div class="custom-control custom-checkbox" style="margin-top:5%">
+                        <input type="radio" name="checkbox1" class="custom-control-input" id="customCheck3">
+                        <label class="custom-control-label" for="customCheck3">@Model.Choix3</label>
+                    </div>
+                    <div class="custom-control custom-checkbox" style="margin-top:5%">
+                        <input type="radio" name="checkbox1" class="custom-control-input" id="customCheck4">
+                        <label class="custom-control-label" for="customCheck4">@Model.Choix4</label>
+                    </div>
+
                 }
                 else
                 {
                     <span>INFO : sondage à choix multiple</span>
+                    <div class="custom-control custom-checkbox" style="margin-top:5%">
+                        <input type="checkbox" name="checkbox1" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">@Model.Choix1</label>
+                    </div>
+                    <div class="custom-control custom-checkbox" style="margin-top:5%">
+                        <input type="checkbox" name="checkbox2" class="custom-control-input" id="customCheck2">
+                        <label class="custom-control-label" for="customCheck2">@Model.Choix2</label>
+                    </div>
+                    <div class="custom-control custom-checkbox" style="margin-top:5%">
+                        <input type="checkbox" name="checkbox3" class="custom-control-input" id="customCheck3">
+                        <label class="custom-control-label" for="customCheck3">@Model.Choix3</label>
+                    </div>
+                    <div class="custom-control custom-checkbox" style="margin-top:5%">
+                        <input type="checkbox" name="checkbox4" class="custom-control-input" id="customCheck4">
+                        <label class="custom-control-label" for="customCheck4">@Model.Choix4</label>
+                    </div>
                 }
 
             </b>
         </div>
-        <div class="custom-control custom-checkbox" style="margin-top:5%">
-            <input type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">@Model.Choix1</label>
-        </div>
-        <div class="custom-control custom-checkbox"style="margin-top:5%">
-            <input type="checkbox" class="custom-control-input" id="customCheck2">
-            <label class="custom-control-label" for="customCheck2">@Model.Choix2</label>
-        </div>
-        <div class="custom-control custom-checkbox"style="margin-top:5%">
-            <input type="checkbox" class="custom-control-input" id="customCheck3">
-            <label class="custom-control-label" for="customCheck3">@Model.Choix3</label>
-        </div>
-        <div class="custom-control custom-checkbox"style="margin-top:5%">
-            <input type="checkbox" class="custom-control-input" id="customCheck4">
-            <label class="custom-control-label" for="customCheck4">@Model.Choix4</label>
-        </div>
+       
 
         <a style="margin-top:5%;margin-right:5%" href="@Url.Action("PageVoteEffectue")" type="button" class="btn btn-primary btn-lg">Voter</a>
 

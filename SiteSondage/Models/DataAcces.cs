@@ -8,27 +8,27 @@ namespace SiteSondage.Models
 {
     public class DataAcces
     {
-        const string ChaineConnexionBDD = @"server=ADMIN-PC;Initial Catalog=SondageBDD;Integrated Security=True";
+        const string ChaineConnexionBDD = @"server=.\SQLEXPRESS;Initial Catalog=SondageBDD;Integrated Security=True";
         public static ClassSondage RecupererEnBdd(int idSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
             {
                 connection.Open();
 
-                SqlCommand requeteSQL = new SqlCommand(@"SELECT Question,Choix1,Choix2,Choix3,Choix4,ChoixMultiple FROM Sondage", connection);
+                SqlCommand requeteSQL = new SqlCommand(@"SELECT * FROM Sondage WHERE IdSondage = @ID", connection);
 
-
+                requeteSQL.Parameters.AddWithValue("@ID", idSondage);
                 SqlDataReader reader = requeteSQL.ExecuteReader();
 
                 reader.Read();
 
-                
-                string question = reader.GetString(0);
-                string choix1 = reader.GetString(1);
-                string choix2 = reader.GetString(2);
-                string choix3 = reader.GetString(3);
-                string choix4 = reader.GetString(4);
-                bool choixMultiple = reader.GetBoolean(5);
+                int idsondage = reader.GetInt32(0);
+                string question = reader.GetString(1);
+                string choix1 = reader.GetString(2);
+                string choix2 = reader.GetString(3);
+                string choix3 = reader.GetString(4);
+                string choix4 = reader.GetString(5);
+                bool choixMultiple = reader.GetBoolean(6);
               //  int nombreVotant = reader.GetInt32(6);
                 //int resultatChoix1 = reader.GetInt32(7);
                 //int resultatChoix2 = reader.GetInt32(8);
@@ -37,7 +37,7 @@ namespace SiteSondage.Models
 
 
 
-                ClassSondage sondage = new ClassSondage(question,choix1,choix2,choix3,choix4,choixMultiple);
+                ClassSondage sondage = new ClassSondage(idsondage,question,choix1,choix2,choix3,choix4,choixMultiple);
 
                 return sondage;
 
