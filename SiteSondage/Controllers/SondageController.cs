@@ -39,16 +39,16 @@ namespace SiteSondage.Controllers
         
             
             DataAcces.InsererResultatEnBDD( idSondage, Fonction.VerifiSiEstNull(ResultatChoix1), Fonction.VerifiSiEstNull(ResultatChoix2), Fonction.VerifiSiEstNull(ResultatChoix3), Fonction.VerifiSiEstNull(ResultatChoix4));
-            return RedirectToAction("PageResultat");
+            return RedirectToAction("PageResultat", new { IdSondage = idSondage  });
         }
         public ActionResult PageVoteEffectue()
         {
             return View();
         }
-        public ActionResult PageResultat( int idSondage)
+        public ActionResult PageResultat( int IdSondage)
         {
             
-            return View(DataAcces.RecupererResultatEnBdd(idSondage));
+            return View(DataAcces.RecupererResultatEnBdd(IdSondage));
         }
         public ActionResult CreationSondage( string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
         {

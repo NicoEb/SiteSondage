@@ -33,12 +33,15 @@
         </b>
         <b> et nombre de Votants : </b><b>@Model.NombreDevotant</b>
     </div>
+    <div style="text-align: center;margin-top:3%">
+        <b> Question du sondage : @Model.Vote.Question</b>
+    </div>
 
     <div style="text-align:center">
-        <b style="margin-right:1%">@Model.Vote.Choix1</b> <progress style="margin-top:5%" value="100" max="100">70 %</progress><b style="margin-left:1%">@Model.ResultatChoix1</b><b>%</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix2</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">@Model.ResultatChoix2</b><b>%</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix3</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">@Model.ResultatChoix3</b><b>%</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix4</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">@Model.ResultatChoix4</b><b>%</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix1 :</b> <progress style="margin-top:5%" value="100" max="100">70 %</progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix1</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix2 :</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix2</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix3 :</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix3</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix4 :</b> <progress style="margin-top:3%" value="0" max="100">70 %</progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix4</b><br />
     </div>
 
     <div style="text-align:right"> <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageAccueil")" type="button" class="btn btn-danger btn-lg">Retour Accueil</a></div>
