@@ -29,6 +29,6 @@ namespace SiteSondage.Models
             ChoixMultiple = choixMultiple;
         }
 
-        
+       
     }
 }

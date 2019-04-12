@@ -34,21 +34,21 @@ namespace SiteSondage.Controllers
             
             return View(DataAcces.RecupererEnBdd(idSondage));
         }
-        public ActionResult RecuperationVote(int idSondage, int checkbox1,int checkbox2, int checkbox3,int checkbox4)
+        public ActionResult RecuperationVote(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4)
         {
+        
             
-            ClassResultat vote = new ClassResultat(checkbox1, checkbox2, checkbox3, checkbox4);
-            DataAcces.InsererResultatEnBDD(vote);
-            return RedirectToAction("PageVoteEffectue");
+            DataAcces.InsererResultatEnBDD( idSondage, Fonction.VerifiSiEstNull(ResultatChoix1), Fonction.VerifiSiEstNull(ResultatChoix2), Fonction.VerifiSiEstNull(ResultatChoix3), Fonction.VerifiSiEstNull(ResultatChoix4));
+            return RedirectToAction("PageResultat");
         }
         public ActionResult PageVoteEffectue()
         {
             return View();
         }
-        public ActionResult PageResultat()
+        public ActionResult PageResultat( int idSondage)
         {
             
-            return View();
+            return View(DataAcces.RecupererResultatEnBdd(idSondage));
         }
         public ActionResult CreationSondage( string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
         {
