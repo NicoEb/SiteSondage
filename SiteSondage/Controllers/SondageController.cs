@@ -34,13 +34,39 @@ namespace SiteSondage.Controllers
             
             return View(DataAcces.RecupererEnBdd(idSondage));
         }
-        public ActionResult RecuperationVote(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4)
+        public ActionResult RecuperationVoteIntermediaire(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4,bool ChoixMultiple)
         {
-        
-            
-            DataAcces.InsererResultatEnBDD( idSondage, Fonction.VerifiSiEstNull(ResultatChoix1), Fonction.VerifiSiEstNull(ResultatChoix2), Fonction.VerifiSiEstNull(ResultatChoix3), Fonction.VerifiSiEstNull(ResultatChoix4));
-            return RedirectToAction("PageResultat", new { IdSondage = idSondage  });
+          
+          
+            if (ChoixMultiple == false)
+            {
+                return RedirectToAction("RecuperationVoteChoixUnique", new { idS = idSondage, resultatchoix = ResultatChoix1});
+
+
+
+            }
+
+            return RedirectToAction("RecuperationVote", new { idS = idSondage, resultatchoix1 = ResultatChoix1, resultatchoix2 = ResultatChoix2, resultatchoix3 = ResultatChoix3, resultatchoix4 = ResultatChoix4 });
+
         }
+        public ActionResult RecuperationVote(int idS, string resultatchoix1, string resultatchoix2, string resultatchoix3, string resultatchoix4)
+        {
+
+            DataAcces.InsererResultatEnBDD(idS, Fonction.VerifiSiEstNull(resultatchoix1), Fonction.VerifiSiEstNull(resultatchoix2), Fonction.VerifiSiEstNull(resultatchoix3), Fonction.VerifiSiEstNull(resultatchoix4));
+            return RedirectToAction("PageResultat", new { IdSondage = idS });
+        }
+
+
+        public ActionResult RecuperationVoteChoixUnique(int idS, string resultatchoix)
+        {
+           
+
+            DataAcces.InsererResultatEnBDD(idS, Fonction.VerifiSiEstNull(Fonction.ListeChoix1(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix2(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix3(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix4(resultatchoix)));
+            return RedirectToAction("PageResultat", new { IdSondage = idS });
+        }
+
+
+
         public ActionResult PageVoteEffectue()
         {
             return View();
