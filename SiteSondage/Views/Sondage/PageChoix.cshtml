@@ -21,25 +21,33 @@
 
     <form style="margin-left:35%"action="@Url.Action("PageVoter", new { idSondage = Model.IdSondage } )">
         <div class="form-group col-md-6" style="margin-top:3%">
-            <label for="inputEmail4"><b>@Url.Action("PageVoter", new { idSondage = Model.IdSondage })</b></label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="">
+            <label for="inputEmail4"></label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder= "@Url.Action("PageVoter", new { idSondage = Model.IdSondage })"/>
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
-            <input type="submit" name="Voter"value="Voter" />
+            <input type="submit" name="Voter"value="Voter" style="background-color:forestgreen" />
         </div>
        
+    </form>
 
-
+    <form style="margin-left:35%" action="@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })">
 
         <div style="margin-top:5%">
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
             <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
-            <a href="@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })" type="submit" class="btn btn-primary mb-2">@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })</a>
-
+            <label for="inputEmail4"></label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })" />
+            <input type="submit" name="Supprimer" value="Supprimer Sondage" style="background-color:red" />
         </div>
 
-        <div style="margin-top:5%">
+    </form>
+
+    <form style="margin-left:35%" action=" @Url.Action("PageResultat", new { idSondage = Model.IdSondage })">
+
+        <div style="margin-top:10%">
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
-            <a href="@Url.Action("PageResultat", new { idSondage = Model.IdSondage })" type="submit" class="btn btn-primary mb-2">@Url.Action("PageResultat", new { idSondage = Model.IdSondage })</a>
+            <label for="inputEmail4"></label>
+            <input type="submit" id="inputEmail4"value="Resultat Sondage" style="background-color:dodgerblue" />
+         
         </div>
     </form>
 

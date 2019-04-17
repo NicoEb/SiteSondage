@@ -109,7 +109,6 @@
     </Compile>
     <Compile Include="Models\classResultat.cs" />
     <Compile Include="Models\ClassSondage.cs" />
-    <Compile Include="Models\CreationSondage.cs" />
     <Compile Include="Models\DataAcces.cs" />
     <Compile Include="Models\Fonction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,7 +124,6 @@
     <Content Include="Views\Sondage\PageChoix.cshtml" />
     <Content Include="Views\Sondage\PageSupprimer.cshtml" />
     <Content Include="Views\Sondage\PageVoter.cshtml" />
-    <Content Include="Views\Sondage\PageVoteEffectue.cshtml" />
     <Content Include="Views\Sondage\PageResultat.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

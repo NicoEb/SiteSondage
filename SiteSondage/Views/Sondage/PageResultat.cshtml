@@ -18,7 +18,7 @@
         <h1>RESULTAT DU SONDAGE</h1>
 
     </div>
-    
+
     <div style="text-align:center;margin-top:3%">
         <b>
             @if (Model.Vote.ChoixMultiple == false)
@@ -44,7 +44,12 @@
         <b style="margin-right:1%">@Model.Vote.Choix4 :</b> <progress style="margin-top:3%" value="0" max="100"></progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix4</b><br />
     </div>
 
-    <div style="text-align:right"> <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageAccueil")" type="button" class="btn btn-danger btn-lg">Retour Accueil</a></div>
+    <div style="text-align:right">
+        <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageChoix",new { idSondage = Model.Vote.IdSondage, numeroSecurite = Model.Vote.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">retour vers choix</a>
+        <input type="hidden" name="idSondage" value="@Model.Vote.IdSondage" />
+        <input type="hidden" name="numeroSecurite" value="@Model.Vote.NumeroSecurite" />
+    </div>
+
 
 
 
