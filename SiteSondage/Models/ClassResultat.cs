@@ -25,5 +25,9 @@ namespace SiteSondage.Models
             ResultatChoix4 = resultatChoix4;
             NombreDevotant = nombreDevotant;
         }
+
+        public ClassResultat()
+        {
+        }
     }
 }

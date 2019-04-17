@@ -19,9 +19,9 @@
         </h1>
     </div>
 
-    <form style="margin-left:35%"action="@Url.Action("PageVoter")">
+    <form style="margin-left:35%"action="@Url.Action("PageVoter", new { idSondage = Model.IdSondage } )">
         <div class="form-group col-md-6" style="margin-top:3%">
-            <label for="inputEmail4"><b>Lien pour partager votre sondage</b></label>
+            <label for="inputEmail4"><b>@Url.Action("PageVoter", new { idSondage = Model.IdSondage })</b></label>
             <input type="email" class="form-control" id="inputEmail4" placeholder="">
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
             <input type="submit" name="Voter"value="Voter" />
@@ -31,14 +31,15 @@
 
 
         <div style="margin-top:5%">
-
-            <a href="@Url.Action("PageSupprimer")" type="submit" class="btn btn-primary mb-2">Supprimer le sondage</a>
+            <input type="hidden" name="idSondage" value="@Model.IdSondage" />
+            <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
+            <a href="@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })" type="submit" class="btn btn-primary mb-2">@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })</a>
 
         </div>
 
         <div style="margin-top:5%">
-
-            <a href="@Url.Action("PageResultat")" type="submit" class="btn btn-primary mb-2"> Voir les Résultats des sondages</a>
+            <input type="hidden" name="idSondage" value="@Model.IdSondage" />
+            <a href="@Url.Action("PageResultat", new { idSondage = Model.IdSondage })" type="submit" class="btn btn-primary mb-2">@Url.Action("PageResultat", new { idSondage = Model.IdSondage })</a>
         </div>
     </form>
 

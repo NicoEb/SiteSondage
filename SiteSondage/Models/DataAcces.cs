@@ -29,15 +29,15 @@ namespace SiteSondage.Models
                 string choix3 = reader.GetString(4);
                 string choix4 = reader.GetString(5);
                 bool choixMultiple = reader.GetBoolean(6);
-               //int nombreVotant = reader.GetInt32(7);
-                //int resultatChoix1 = reader.GetInt32(7);
+               bool etatDuSondage = reader.GetBoolean(7);
+                int numeroSecurite = reader.GetInt32(8);
                 //int resultatChoix2 = reader.GetInt32(8);
                 //int resultatChoix3 = reader.GetInt32(9);
                 //int resultatChoix4 = reader.GetInt32(10);
 
 
 
-                ClassSondage sondage = new ClassSondage(idsondage,question,choix1,choix2,choix3,choix4,choixMultiple);
+                ClassSondage sondage = new ClassSondage(idsondage,question,choix1,choix2,choix3,choix4,choixMultiple,etatDuSondage,numeroSecurite);
                 
 
                 return sondage;
@@ -64,21 +64,69 @@ namespace SiteSondage.Models
                 string choix3 = reader.GetString(4);
                 string choix4 = reader.GetString(5);
                 bool choixMultiple = reader.GetBoolean(6);
-                int resultatChoix1 = reader.GetInt32(7);
-                int resultatChoix2 = reader.GetInt32(8);
-                int resultatChoix3 = reader.GetInt32(9);
-                int resultatChoix4 = reader.GetInt32(10);
-                int nombreDeVotant = reader.GetInt32(11);
+                bool etatDuSondage = reader.GetBoolean(7);
+                int numeroSecurite = reader.GetInt32(8);
+                int resultatChoix1 = reader.GetInt32(9);
+                int resultatChoix2 = reader.GetInt32(10);
+                int resultatChoix3 = reader.GetInt32(11);
+                int resultatChoix4 = reader.GetInt32(12);
+                int nombreDeVotant = reader.GetInt32(13);
 
 
 
 
-                ClassSondage sondage = new ClassSondage(idsondage, question, choix1, choix2, choix3, choix4, choixMultiple);
+                ClassSondage sondage = new ClassSondage(idsondage, question, choix1, choix2, choix3, choix4, choixMultiple, etatDuSondage, numeroSecurite);
                 ClassResultat vote = new ClassResultat(sondage, resultatChoix1, resultatChoix2, resultatChoix3, resultatChoix4, nombreDeVotant);
 
 
                 return vote;
 
+            }
+        }
+        public static ClassResultat RecupererSondagePourDesactiver(int idSondage , int numeroSecurite)
+        {
+            using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
+            {
+                connection.Open();
+
+                SqlCommand requeteSQL = new SqlCommand(@"SELECT * FROM Sondage,Resultats WHERE IdSondage = @ID and CleDeSecurite = @cleSecu and  FK_Id_sondage = @ID", connection);
+
+                requeteSQL.Parameters.AddWithValue("@ID", idSondage);
+                requeteSQL.Parameters.AddWithValue("@cleSecu", numeroSecurite);
+                SqlDataReader reader = requeteSQL.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    int idsondage = reader.GetInt32(0);
+                    string question = reader.GetString(1);
+                    string choix1 = reader.GetString(2);
+                    string choix2 = reader.GetString(3);
+                    string choix3 = reader.GetString(4);
+                    string choix4 = reader.GetString(5);
+                    bool choixMultiple = reader.GetBoolean(6);
+                    bool etatDuSondage = reader.GetBoolean(7);
+                    numeroSecurite = reader.GetInt32(8);
+                    int resultatChoix1 = reader.GetInt32(9);
+                    int resultatChoix2 = reader.GetInt32(10);
+                    int resultatChoix3 = reader.GetInt32(11);
+                    int resultatChoix4 = reader.GetInt32(12);
+                    int nombreDeVotant = reader.GetInt32(13);
+
+
+
+
+                    ClassSondage sondage = new ClassSondage(idsondage, question, choix1, choix2, choix3, choix4, choixMultiple, etatDuSondage, numeroSecurite);
+                    ClassResultat vote = new ClassResultat(sondage, resultatChoix1, resultatChoix2, resultatChoix3, resultatChoix4, nombreDeVotant);
+
+
+                    return vote;
+                }
+                else
+                {
+                    ClassResultat vote = new ClassResultat();
+                    return vote = null;
+                }
             }
         }
 
@@ -121,6 +169,23 @@ namespace SiteSondage.Models
 
 
         }
+        public static void MetAJourEtatDuSOndage(ClassResultat sondage)
+        {
+            SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
+
+            connection.Open();
+
+            SqlCommand requete = new SqlCommand("UPDATE Sondage SET EtatDuSondage = 1  WHERE IdSondage = @idSondage ", connection);
+
+
+            requete.Parameters.AddWithValue("@idSondage", sondage.Vote.IdSondage);
+
+
+            requete.ExecuteNonQuery();
+            connection.Close();
+
+
+        }
 
         public static int InsererEnBDD(ClassSondage nouveauSondage)
             {
@@ -130,7 +195,7 @@ namespace SiteSondage.Models
 
                     connection.Open();
 
-                    SqlCommand requete = new SqlCommand("INSERT INTO Sondage(Question,Choix1,Choix2,Choix3,Choix4,ChoixMultiple) OUTPUT Inserted.IdSondage VALUES  (@question,@choix1,@choix2,@choix3,@choix4,@choixM)", connection);
+                    SqlCommand requete = new SqlCommand("INSERT INTO Sondage(Question,Choix1,Choix2,Choix3,Choix4,ChoixMultiple,EtatDuSondage,CleDeSecurite) OUTPUT Inserted.IdSondage VALUES  (@question,@choix1,@choix2,@choix3,@choix4,@choixM,@etatSondage,@cleSecu)", connection);
 
                     requete.Parameters.AddWithValue("@question", nouveauSondage.Question);
                     requete.Parameters.AddWithValue("@choix1", nouveauSondage.Choix1);
@@ -138,8 +203,10 @@ namespace SiteSondage.Models
                     requete.Parameters.AddWithValue("@choix3", nouveauSondage.Choix3);
                     requete.Parameters.AddWithValue("@choix4", nouveauSondage.Choix4);
                     requete.Parameters.AddWithValue("@choixM", nouveauSondage.ChoixMultiple);
+                    requete.Parameters.AddWithValue("@etatSondage",nouveauSondage.EtatDuSondage);
+                    requete.Parameters.AddWithValue("@cleSecu", nouveauSondage.NumeroSecurite);
 
-                    int idInsere = (int)requete.ExecuteScalar();
+                int idInsere = (int)requete.ExecuteScalar();
 
                     InsererIDDansResultat(idInsere);
 
@@ -177,6 +244,8 @@ namespace SiteSondage.Models
             }
 
         }
+
+        
 
 
 

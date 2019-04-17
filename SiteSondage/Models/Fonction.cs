@@ -23,8 +23,8 @@ namespace SiteSondage.Models
 
         public static string ListeChoix1(string Choix)
         {
-            string ResultatChoix1 = "Choix1"; /*string ResultatChoix2 = "Choix2"; string ResultatChoix3 = "Choix3"; string ResultatChoix4 = "Choix4";
-*/
+            string ResultatChoix1 = "Choix1"; 
+
 
             if (Choix == ResultatChoix1)
             {
@@ -45,8 +45,8 @@ namespace SiteSondage.Models
         }
         public static string ListeChoix2(string Choix)
         {
-            string ResultatChoix2 = "Choix2"; /*string ResultatChoix2 = "Choix2"; string ResultatChoix3 = "Choix3"; string ResultatChoix4 = "Choix4";
-*/
+            string ResultatChoix2 = "Choix2"; 
+
 
             if (Choix == ResultatChoix2)
             {
@@ -67,8 +67,8 @@ namespace SiteSondage.Models
         }
         public static string ListeChoix3(string Choix)
         {
-            string ResultatChoix3 = "Choix3"; /*string ResultatChoix2 = "Choix2"; string ResultatChoix3 = "Choix3"; string ResultatChoix4 = "Choix4";
-*/
+            string ResultatChoix3 = "Choix3"; 
+
 
             if (Choix == ResultatChoix3)
             {
@@ -89,8 +89,8 @@ namespace SiteSondage.Models
         }
         public static string ListeChoix4(string Choix)
         {
-            string ResultatChoix4 = "Choix4"; /*string ResultatChoix2 = "Choix2"; string ResultatChoix3 = "Choix3"; string ResultatChoix4 = "Choix4";
-*/
+            string ResultatChoix4 = "Choix4"; 
+
 
             if (Choix == ResultatChoix4)
             {

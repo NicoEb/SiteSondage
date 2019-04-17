@@ -25,44 +25,37 @@ namespace SiteSondage.Controllers
             return View(DataAcces.RecupererEnBdd(idSondage));
             
         }
-        public ActionResult PageSupprimer()
+        public ActionResult PageSupprimer(int idSondage , int numeroSecurite)
         {
+            ClassResultat sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
+            if (sondage != null)
+            {
+                DataAcces.MetAJourEtatDuSOndage(sondage);
+                return View(sondage);
+            }
             return View();
         }
+       
         public ActionResult PageVoter(int idSondage)
         {
             
             return View(DataAcces.RecupererEnBdd(idSondage));
         }
-        public ActionResult RecuperationVoteIntermediaire(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4,bool ChoixMultiple)
-        {
-          
-          
-            if (ChoixMultiple == false)
-            {
-                return RedirectToAction("RecuperationVoteChoixUnique", new { idS = idSondage, resultatchoix = ResultatChoix1});
-
-
-
-            }
-
-            return RedirectToAction("RecuperationVote", new { idS = idSondage, resultatchoix1 = ResultatChoix1, resultatchoix2 = ResultatChoix2, resultatchoix3 = ResultatChoix3, resultatchoix4 = ResultatChoix4 });
-
-        }
-        public ActionResult RecuperationVote(int idS, string resultatchoix1, string resultatchoix2, string resultatchoix3, string resultatchoix4)
+       
+        public ActionResult RecuperationVoteChoixMultiple(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4)
         {
 
-            DataAcces.InsererResultatEnBDD(idS, Fonction.VerifiSiEstNull(resultatchoix1), Fonction.VerifiSiEstNull(resultatchoix2), Fonction.VerifiSiEstNull(resultatchoix3), Fonction.VerifiSiEstNull(resultatchoix4));
-            return RedirectToAction("PageResultat", new { IdSondage = idS });
+            DataAcces.InsererResultatEnBDD(idSondage, Fonction.VerifiSiEstNull(ResultatChoix1), Fonction.VerifiSiEstNull(ResultatChoix2), Fonction.VerifiSiEstNull(ResultatChoix3), Fonction.VerifiSiEstNull(ResultatChoix4));
+            return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
 
-        public ActionResult RecuperationVoteChoixUnique(int idS, string resultatchoix)
+        public ActionResult RecuperationVoteChoixUnique(int idSondage, string resultatchoix)
         {
            
 
-            DataAcces.InsererResultatEnBDD(idS, Fonction.VerifiSiEstNull(Fonction.ListeChoix1(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix2(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix3(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix4(resultatchoix)));
-            return RedirectToAction("PageResultat", new { IdSondage = idS });
+            DataAcces.InsererResultatEnBDD(idSondage, Fonction.VerifiSiEstNull(Fonction.ListeChoix1(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix2(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix3(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix4(resultatchoix)));
+            return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
 
@@ -79,8 +72,9 @@ namespace SiteSondage.Controllers
         public ActionResult CreationSondage( string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
         {
             bool choixMultiple = ChoixMultiplePeutEtreNull.GetValueOrDefault(false);
-
-            ClassSondage sondage = new ClassSondage(0, Question, Choix1, Choix2, Choix3, Choix4, choixMultiple);
+            Random aleatoire = new Random();
+            int cleSecurite = aleatoire.Next(1000, 100000);
+            ClassSondage sondage = new ClassSondage(0, Question, Choix1, Choix2, Choix3, Choix4, choixMultiple,false,cleSecurite);
             CreationSondage Sondage = new CreationSondage(sondage);
              int idSondageCree = DataAcces.InsererEnBDD(sondage);
             
