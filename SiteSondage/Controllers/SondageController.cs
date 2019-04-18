@@ -48,9 +48,26 @@ namespace SiteSondage.Controllers
 
         public ActionResult RecuperationVoteChoixUnique(int idSondage, string resultatchoix)
         {
+             ClassResultat Vote = new ClassResultat(0, 0, 0, 0, idSondage);
+            switch (resultatchoix)
+            {
+                case "Choix1":
+                    Vote.ResultatChoix1 = 1;
+                    break;
+
+                case "Choix2":
+                    Vote.ResultatChoix2 = 1;
+                    break;
+                case "Choix3":
+                    Vote.ResultatChoix3 = 1;
+                    break;
+                case "Choix4":
+                    Vote.ResultatChoix4 = 1;
+                    break;
+            }
 
 
-            DataAcces.InsererResultatEnBDD(idSondage, Fonction.VerifiSiEstNull(Fonction.ListeChoix1(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix2(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix3(resultatchoix)), Fonction.VerifiSiEstNull(Fonction.ListeChoix4(resultatchoix)));
+                    DataAcces.InsererResultatEnBDD(idSondage, Vote.ResultatChoix1, Vote.ResultatChoix2, Vote.ResultatChoix3, Vote.ResultatChoix4 );
             return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
@@ -59,12 +76,12 @@ namespace SiteSondage.Controllers
         
         public ActionResult PageResultat(int idSondage)
         {
-            ClassResultat model = DataAcces.RecupererResultatEnBdd(idSondage);
-            model.PoucentageChoix1 = ClassResultat.PourcentageVote(model.ResultatChoix1, model.NombreDevotant);
-            model.PoucentageChoix2 = ClassResultat.PourcentageVote(model.ResultatChoix2, model.NombreDevotant);
-            model.PoucentageChoix3 = ClassResultat.PourcentageVote(model.ResultatChoix3, model.NombreDevotant);
-            model.PoucentageChoix4 = ClassResultat.PourcentageVote(model.ResultatChoix4, model.NombreDevotant);
-            return View(model);
+            ClassResultat Sondage = DataAcces.RecupererResultatEnBdd(idSondage);
+            Sondage.PoucentageChoix1 = ClassResultat.PourcentageVote(Sondage.ResultatChoix1, Sondage.NombreDevotant);
+            Sondage.PoucentageChoix2 = ClassResultat.PourcentageVote(Sondage.ResultatChoix2, Sondage.NombreDevotant);
+            Sondage.PoucentageChoix3 = ClassResultat.PourcentageVote(Sondage.ResultatChoix3, Sondage.NombreDevotant);
+            Sondage.PoucentageChoix4 = ClassResultat.PourcentageVote(Sondage.ResultatChoix4, Sondage.NombreDevotant);
+            return View(Sondage);
         }
         public ActionResult CreationSondage(string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
         {

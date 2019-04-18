@@ -4,7 +4,7 @@ namespace SiteSondage.Models
 {
     public class DataAcces
     {
-        const string ChaineConnexionBDD = @"server=.\SQLEXPRESS;Initial Catalog=SondageBDD;Integrated Security=True";
+        const string ChaineConnexionBDD = @"server=ADMIN-PC;Initial Catalog=SondageBDD;Integrated Security=True";
         public static ClassSondage RecupererEnBdd(int idSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
