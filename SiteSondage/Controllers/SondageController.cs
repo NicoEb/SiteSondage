@@ -41,7 +41,7 @@ namespace SiteSondage.Controllers
         public ActionResult RecuperationVoteChoixMultiple(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4)
         {
 
-            DataAcces.InsererResultatEnBDD(idSondage, Fonction.VerifiSiEstNull(ResultatChoix1), Fonction.VerifiSiEstNull(ResultatChoix2), Fonction.VerifiSiEstNull(ResultatChoix3), Fonction.VerifiSiEstNull(ResultatChoix4));
+            DataAcces.InsererResultatEnBDD(idSondage, ClassResultat.VerifiSiEstNull(ResultatChoix1), ClassResultat.VerifiSiEstNull(ResultatChoix2), ClassResultat.VerifiSiEstNull(ResultatChoix3), ClassResultat.VerifiSiEstNull(ResultatChoix4));
             return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 

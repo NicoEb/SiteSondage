@@ -107,10 +107,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\classResultat.cs" />
+    <Compile Include="Models\ClassResultat.cs" />
     <Compile Include="Models\ClassSondage.cs" />
     <Compile Include="Models\DataAcces.cs" />
-    <Compile Include="Models\Fonction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
