@@ -14,7 +14,12 @@ namespace SiteSondage.Models
         public int ResultatChoix3 { get; private set; }
         public int ResultatChoix4 { get; private set; }
 
-        public int NombreDevotant { get; private set; }
+        public int NombreDevotant { get;  set; }
+
+        public int PoucentageChoix1 { get;  set; }
+        public int PoucentageChoix2 { get; set; }
+        public int PoucentageChoix3 { get; set; }
+        public int PoucentageChoix4 { get; set; }
 
         public ClassResultat(ClassSondage vote, int resultatChoix1, int resultatChoix2, int resultatChoix3, int resultatChoix4, int nombreDevotant)
         {
@@ -29,5 +34,22 @@ namespace SiteSondage.Models
         public ClassResultat()
         {
         }
+
+        public static int PourcentageVote(int nombreVote ,int NombreDevotant)
+        {
+            int resultat;
+            if (NombreDevotant == 0)
+            {
+
+                resultat = 0;
+            }
+            else
+            {
+                resultat = nombreVote * 100 / (NombreDevotant);
+            }
+           
+            return resultat; 
+        }
+
     }
 }

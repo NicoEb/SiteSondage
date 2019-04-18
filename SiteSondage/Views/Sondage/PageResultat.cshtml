@@ -38,10 +38,10 @@
     </div>
 
     <div style="text-align:center">
-        <b style="margin-right:1%">@Model.Vote.Choix1 :</b> <progress style="margin-top:5%" value="0" max="100"></progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix1</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix2 :</b> <progress style="margin-top:3%" value="0" max="100"></progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix2</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix3 :</b> <progress style="margin-top:3%" value="0" max="100"></progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix3</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix4 :</b> <progress style="margin-top:3%" value="0" max="100"></progress><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix4</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix1 :</b> <progress style="margin-top:5%" value="@Model.PoucentageChoix1" max="100"></progress>   <b>@Model.PoucentageChoix1 %</b><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix1</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix2 :</b> <progress style="margin-top:3%" value="@Model.PoucentageChoix2" max="100"></progress>   <b>@Model.PoucentageChoix2 %</b><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix2</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix3 :</b> <progress style="margin-top:3%" value="@Model.PoucentageChoix3" max="100"></progress>   <b>@Model.PoucentageChoix3 %</b><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix3</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix4 :</b> <progress style="margin-top:3%" value="@Model.PoucentageChoix4" max="100"></progress>   <b>@Model.PoucentageChoix4 %</b><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix4</b><br />
     </div>
 
     <div style="text-align:right">

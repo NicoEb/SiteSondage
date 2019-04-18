@@ -4,7 +4,7 @@ namespace SiteSondage.Models
 {
     public class DataAcces
     {
-        const string ChaineConnexionBDD = @"server=ADMIN-PC;Initial Catalog=SondageBDD;Integrated Security=True";
+        const string ChaineConnexionBDD = @"server=.\SQLEXPRESS;Initial Catalog=SondageBDD;Integrated Security=True";
         public static ClassSondage RecupererEnBdd(int idSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -76,6 +76,7 @@ namespace SiteSondage.Models
 
             }
         }
+       
         public static ClassResultat RecupererSondagePourDesactiver(int idSondage, int numeroSecurite)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -125,7 +126,8 @@ namespace SiteSondage.Models
 
         public static void InsererResultatEnBDD(int idSondage, int Choix1, int Choix2, int Choix3, int Choix4)
         {
-            InsererNombreDeVotant(idSondage);
+            int nombreVote = Choix1 + Choix2 + Choix3 + Choix4;
+            InsererNombreDeVotant(idSondage,nombreVote);
 
             SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
 
@@ -145,16 +147,17 @@ namespace SiteSondage.Models
 
 
         }
-        public static void InsererNombreDeVotant(int idSondage)
+        public static void InsererNombreDeVotant(int idSondage, int nombreVote)
         {
             SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
 
             connection.Open();
 
-            SqlCommand requete = new SqlCommand("UPDATE Resultats SET NombreDeVotant = NombreDeVotant + 1 WHERE FK_Id_sondage = @idSondage ", connection);
+            SqlCommand requete = new SqlCommand("UPDATE Resultats SET NombreDeVotant = NombreDeVotant + @nombreVote WHERE FK_Id_sondage = @idSondage ", connection);
 
 
             requete.Parameters.AddWithValue("@idSondage", idSondage);
+            requete.Parameters.AddWithValue("@nombreVote", nombreVote);
 
 
             requete.ExecuteNonQuery();

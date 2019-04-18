@@ -57,10 +57,14 @@ namespace SiteSondage.Controllers
 
 
         
-        public ActionResult PageResultat(int IdSondage)
+        public ActionResult PageResultat(int idSondage)
         {
-
-            return View(DataAcces.RecupererResultatEnBdd(IdSondage));
+            ClassResultat model = DataAcces.RecupererResultatEnBdd(idSondage);
+            model.PoucentageChoix1 = ClassResultat.PourcentageVote(model.ResultatChoix1, model.NombreDevotant);
+            model.PoucentageChoix2 = ClassResultat.PourcentageVote(model.ResultatChoix2, model.NombreDevotant);
+            model.PoucentageChoix3 = ClassResultat.PourcentageVote(model.ResultatChoix3, model.NombreDevotant);
+            model.PoucentageChoix4 = ClassResultat.PourcentageVote(model.ResultatChoix4, model.NombreDevotant);
+            return View(model);
         }
         public ActionResult CreationSondage(string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
         {
