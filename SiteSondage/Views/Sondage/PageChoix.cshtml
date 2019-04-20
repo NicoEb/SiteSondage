@@ -19,37 +19,43 @@
         </h1>
     </div>
 
-    <form style="margin-left:35%"action="@Url.Action("PageVoter", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite } )">
+    <form style="margin-left:35%" action="@Url.Action("PageVoter", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite } )">
         <div class="form-group col-md-6" style="margin-top:3%">
             <label for="inputEmail4"></label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="@Url.Action("PageVoter", new { idSondage = Model.IdSondage ,})" />
+            <input type="email" class="form-control" id="inputEmail4" placeholder="@Url.Action("PageVoter", new { idSondage = Model.IdSondage })" />
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
             <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
-            <input type="submit" name="Voter" value="Voter" style="background-color:forestgreen" />
+            <input type="submit" name="Voter" value="Voter" class="btn btn-primary btn-lg" style="background-color:limegreen" />
         </div>
-       
+
     </form>
 
     <form style="margin-left:35%" action="@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })">
 
-        <div style="margin-top:5%">
+        <div style="margin-top:2%; margin-right:40%">
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
             <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
             <label for="inputEmail4"></label>
             <input type="text" class="form-control" id="inputEmail4" placeholder="@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })" />
-            <input type="submit" name="Supprimer" value="Supprimer Sondage" style="background-color:red" />
+            <input type="submit" name="Supprimer" value="Supprimer Sondage" class="btn btn-primary btn-lg" style="background-color:tomato" />
         </div>
 
     </form>
 
     <form style="margin-left:35%" action=" @Url.Action("PageResultat", new { idSondage = Model.IdSondage })">
 
-        <div style="margin-top:10%">
+        <div style="margin-top:5%">
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
             <label for="inputEmail4"></label>
-            <input type="submit" id="inputEmail4"value="Resultat Sondage" style="background-color:dodgerblue" />
-         
+            <input type="submit" id="inputEmail4" value="Résultat Sondage" class="btn btn-primary btn-lg" style="background-color:cornflowerblue" />
+
         </div>
+    </form>
+
+    <form action="@Url.Action("PageSondage")">
+    <div style="margin-left:35%">
+        <input style="margin-top:5%; background-color:grey" type="submit" value="Crée nouveau sondage" class="btn btn-primary btn-lg" />
+    </div>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

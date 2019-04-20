@@ -16,10 +16,17 @@ namespace SiteSondage.Controllers
 
             return View();
         }
-        public ActionResult PageDejaVoter()
+        public ActionResult PageDejaSupprimer(int idSondage, int numeroSecurite)
         {
+            ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
+            return View(sondage);
 
-            return View();
+        }
+        public ActionResult PageDejaVoter(int idSondage , int numeroSecurite)
+        {
+            ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
+            return View(sondage);
+            
         }
         public ActionResult PageChoix(int idSondage)
         {
@@ -30,12 +37,16 @@ namespace SiteSondage.Controllers
         public ActionResult PageSupprimer(int idSondage, int numeroSecurite)
         {
             ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
-            if (sondage != null)
+            if (sondage.EtatDuSondage == false)
             {
                 DataAcces.MetAJourEtatDuSOndage(sondage);
                 return View(sondage);
             }
-            return View();
+            else 
+            {
+                return RedirectToAction("PageDejaSupprimer", new { IdSondage = idSondage, NumeroSecurite = numeroSecurite });
+            }
+            
         }
 
         public ActionResult PageVoter(int idSondage, int numeroSecurite)
@@ -47,7 +58,7 @@ namespace SiteSondage.Controllers
             }
             else
             {
-                return View("PageDejaVoter");
+                return RedirectToAction("PageDejaVoter", new { IdSondage = idSondage , NumeroSecurite = numeroSecurite });
             }
 
         }
