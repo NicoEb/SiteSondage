@@ -59,7 +59,7 @@ namespace SiteSondage.Models
            
             return resultat; 
         }
-        public static int VerifiSiEstNull(string Parametre)
+        public static int ValeurDuCHoix(string Parametre)
         {
             int Choix = 0;
             if (Parametre != null)

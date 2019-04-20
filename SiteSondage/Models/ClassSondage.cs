@@ -14,7 +14,7 @@ namespace SiteSondage.Models
         public string Choix3 { get; private set; }
         public string Choix4 { get; private set; }
         public bool ChoixMultiple { get; private set; }
-        public bool EtatDuSondage { get; private set; }
+        public bool EtatDuSondage { get;  private set; }
 
         public int NumeroSecurite { get; private set; }
 

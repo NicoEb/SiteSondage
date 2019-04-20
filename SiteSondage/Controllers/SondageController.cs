@@ -16,14 +16,20 @@ namespace SiteSondage.Controllers
 
             return View();
         }
+        public ActionResult PageDejaVoter()
+        {
+
+            return View();
+        }
         public ActionResult PageChoix(int idSondage)
         {
+
             return View(DataAcces.RecupererEnBdd(idSondage));
 
         }
         public ActionResult PageSupprimer(int idSondage, int numeroSecurite)
         {
-            ClassResultat sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
+            ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
             if (sondage != null)
             {
                 DataAcces.MetAJourEtatDuSOndage(sondage);
@@ -32,23 +38,31 @@ namespace SiteSondage.Controllers
             return View();
         }
 
-        public ActionResult PageVoter(int idSondage)
+        public ActionResult PageVoter(int idSondage, int numeroSecurite)
         {
+            ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
+            if (sondage.EtatDuSondage == false)
+            {
+                return View(DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite));
+            }
+            else
+            {
+                return View("PageDejaVoter");
+            }
 
-            return View(DataAcces.RecupererEnBdd(idSondage));
         }
 
         public ActionResult RecuperationVoteChoixMultiple(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4)
         {
 
-            DataAcces.InsererResultatEnBDD(idSondage, ClassResultat.VerifiSiEstNull(ResultatChoix1), ClassResultat.VerifiSiEstNull(ResultatChoix2), ClassResultat.VerifiSiEstNull(ResultatChoix3), ClassResultat.VerifiSiEstNull(ResultatChoix4));
+            DataAcces.InsererResultatEnBDD(idSondage, ClassResultat.ValeurDuCHoix(ResultatChoix1), ClassResultat.ValeurDuCHoix(ResultatChoix2), ClassResultat.ValeurDuCHoix(ResultatChoix3), ClassResultat.ValeurDuCHoix(ResultatChoix4));
             return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
 
         public ActionResult RecuperationVoteChoixUnique(int idSondage, string resultatchoix)
         {
-             ClassResultat Vote = new ClassResultat(0, 0, 0, 0, idSondage);
+            ClassResultat Vote = new ClassResultat(0, 0, 0, 0, idSondage);
             switch (resultatchoix)
             {
                 case "Choix1":
@@ -67,13 +81,13 @@ namespace SiteSondage.Controllers
             }
 
 
-                    DataAcces.InsererResultatEnBDD(idSondage, Vote.ResultatChoix1, Vote.ResultatChoix2, Vote.ResultatChoix3, Vote.ResultatChoix4 );
+            DataAcces.InsererResultatEnBDD(idSondage, Vote.ResultatChoix1, Vote.ResultatChoix2, Vote.ResultatChoix3, Vote.ResultatChoix4);
             return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
 
 
-        
+
         public ActionResult PageResultat(int idSondage)
         {
             ClassResultat Sondage = DataAcces.RecupererResultatEnBdd(idSondage);
@@ -89,7 +103,7 @@ namespace SiteSondage.Controllers
             Random aleatoire = new Random();
             int cleSecurite = aleatoire.Next(1000, 100000);
             ClassSondage sondage = new ClassSondage(0, Question, Choix1, Choix2, Choix3, Choix4, choixMultiple, false, cleSecurite);
-          
+
             int idSondageCree = DataAcces.InsererEnBDD(sondage);
 
 

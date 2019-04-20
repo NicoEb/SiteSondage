@@ -34,59 +34,61 @@
 
         @if (Model.ChoixMultiple == false)
         {
-            <form style="margin-left:40%;margin-top:2%" action="@Url.Action("RecuperationVoteChoixUnique")">
+        <form style="margin-left:40%;margin-top:2%" action="@Url.Action("RecuperationVoteChoixUnique")">
 
-                <span>INFO : sondage à choix unique</span>
+            <span>INFO : sondage à choix unique</span>
 
-                <div class="custom-control custom-checkbox" style="margin-top:5%">
-                    <input type="radio" name="resultatchoix" value="Choix1" class="custom-control-input" id="customCheck1">
-                    <label class="custom-control-label" for="customCheck1">@Model.Choix1</label>
-                </div>
-                <div class="custom-control custom-checkbox" style="margin-top:5%">
-                    <input type="radio" name="resultatchoix" value="Choix2" class="custom-control-input" id="customCheck2">
-                    <label class="custom-control-label" for="customCheck2">@Model.Choix2</label>
-                </div>
-                <div class="custom-control custom-checkbox" style="margin-top:5%">
-                    <input type="radio" name="resultatchoix" value="Choix3" class="custom-control-input" id="customCheck3">
-                    <label class="custom-control-label" for="customCheck3">@Model.Choix3</label>
-                </div>
-                <div class="custom-control custom-checkbox" style="margin-top:5%">
-                    <input type="radio" name="resultatchoix" value="Choix4" class="custom-control-input" id="customCheck4">
-                    <label class="custom-control-label" for="customCheck4">@Model.Choix4</label>
-                </div>
-                <input type="hidden" name="ChoixMultiple" value="false" />
-                <input type="hidden" name="idSondage" value="@Model.IdSondage" />
+            <div class="custom-control custom-checkbox" style="margin-top:5%">
+                <input type="radio" name="resultatchoix" value="Choix1" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">@Model.Choix1</label>
+            </div>
+            <div class="custom-control custom-checkbox" style="margin-top:5%">
+                <input type="radio" name="resultatchoix" value="Choix2" class="custom-control-input" id="customCheck2">
+                <label class="custom-control-label" for="customCheck2">@Model.Choix2</label>
+            </div>
+            <div class="custom-control custom-checkbox" style="margin-top:5%">
+                <input type="radio" name="resultatchoix" value="Choix3" class="custom-control-input" id="customCheck3">
+                <label class="custom-control-label" for="customCheck3">@Model.Choix3</label>
+            </div>
+            <div class="custom-control custom-checkbox" style="margin-top:5%">
+                <input type="radio" name="resultatchoix" value="Choix4" class="custom-control-input" id="customCheck4">
+                <label class="custom-control-label" for="customCheck4">@Model.Choix4</label>
+            </div>
+            <input type="hidden" name="ChoixMultiple" value="false" />
+            <input type="hidden" name="idSondage" value="@Model.IdSondage" />
+            <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
 
-                <input style="margin-top:5%;margin-right:5%" type="submit" class="btn btn-primary btn-lg" value="Voter">
+            <input style="margin-top:5%;margin-right:5%" type="submit" class="btn btn-primary btn-lg" value="Voter">
 
-            </form>
+        </form>
         }
         else
         {
-            <form style="margin-left:40%;margin-top:2%" action="@Url.Action("RecuperationVoteChoixMultiple")">
-                <span>INFO : sondage à choix multiple</span>
-                <div class="custom-control custom-checkbox" style="margin-top:5%">
-                    <input type="checkbox" name="ResultatChoix1" value="Choix1" class="custom-control-input" id="customCheck1">
-                    <label class="custom-control-label" for="customCheck1">@Model.Choix1</label>
-                </div>
-                <div class="custom-control custom-checkbox" style="margin-top:5%">
-                    <input type="checkbox" name="ResultatChoix2" value="Choix2" class="custom-control-input" id="customCheck2">
-                    <label class="custom-control-label" for="customCheck2">@Model.Choix2</label>
-                </div>
-                <div class="custom-control custom-checkbox" style="margin-top:5%">
-                    <input type="checkbox" name="ResultatChoix3" value="Choix3" class="custom-control-input" id="customCheck3">
-                    <label class="custom-control-label" for="customCheck3">@Model.Choix3</label>
-                </div>
-                <div class="custom-control custom-checkbox" style="margin-top:5%">
-                    <input type="checkbox" name="ResultatChoix4" value="Choix4" class="custom-control-input" id="customCheck4">
-                    <label class="custom-control-label" for="customCheck4">@Model.Choix4</label>
-                </div>
-                <input type="hidden" name="ChoixMultiple" value="true" />
-                <input type="hidden" name="idSondage" value="@Model.IdSondage" />
+        <form style="margin-left:40%;margin-top:2%" action="@Url.Action("RecuperationVoteChoixMultiple")">
+            <span>INFO : sondage à choix multiple</span>
+            <div class="custom-control custom-checkbox" style="margin-top:5%">
+                <input type="checkbox" name="ResultatChoix1" value="Choix1" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">@Model.Choix1</label>
+            </div>
+            <div class="custom-control custom-checkbox" style="margin-top:5%">
+                <input type="checkbox" name="ResultatChoix2" value="Choix2" class="custom-control-input" id="customCheck2">
+                <label class="custom-control-label" for="customCheck2">@Model.Choix2</label>
+            </div>
+            <div class="custom-control custom-checkbox" style="margin-top:5%">
+                <input type="checkbox" name="ResultatChoix3" value="Choix3" class="custom-control-input" id="customCheck3">
+                <label class="custom-control-label" for="customCheck3">@Model.Choix3</label>
+            </div>
+            <div class="custom-control custom-checkbox" style="margin-top:5%">
+                <input type="checkbox" name="ResultatChoix4" value="Choix4" class="custom-control-input" id="customCheck4">
+                <label class="custom-control-label" for="customCheck4">@Model.Choix4</label>
+            </div>
+            <input type="hidden" name="ChoixMultiple" value="true" />
+            <input type="hidden" name="idSondage" value="@Model.IdSondage" />
+            <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
 
-                <input style="margin-top:5%;margin-right:5%" type="submit" class="btn btn-primary btn-lg" value="Voter">
+            <input style="margin-top:5%;margin-right:5%" type="submit" class="btn btn-primary btn-lg" value="Voter">
 
-            </form>
+        </form>
         }
 
 

@@ -19,12 +19,13 @@
         </h1>
     </div>
 
-    <form style="margin-left:35%"action="@Url.Action("PageVoter", new { idSondage = Model.IdSondage } )">
+    <form style="margin-left:35%"action="@Url.Action("PageVoter", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite } )">
         <div class="form-group col-md-6" style="margin-top:3%">
             <label for="inputEmail4"></label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder= "@Url.Action("PageVoter", new { idSondage = Model.IdSondage })"/>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="@Url.Action("PageVoter", new { idSondage = Model.IdSondage ,})" />
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
-            <input type="submit" name="Voter"value="Voter" style="background-color:forestgreen" />
+            <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
+            <input type="submit" name="Voter" value="Voter" style="background-color:forestgreen" />
         </div>
        
     </form>

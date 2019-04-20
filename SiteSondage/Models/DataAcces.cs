@@ -76,8 +76,8 @@ namespace SiteSondage.Models
 
             }
         }
-       
-        public static ClassResultat RecupererSondagePourDesactiver(int idSondage, int numeroSecurite)
+
+        public static ClassSondage RecupererSondagePourDesactiver(int idSondage, int numeroSecurite)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
             {
@@ -89,10 +89,10 @@ namespace SiteSondage.Models
                 requeteSQL.Parameters.AddWithValue("@cleSecu", numeroSecurite);
                 SqlDataReader reader = requeteSQL.ExecuteReader();
 
-                if (reader.Read())
-                {
+                reader.Read();
+                
 
-                    int idsondage = reader.GetInt32(0);
+                    idSondage = reader.GetInt32(0);
                     string question = reader.GetString(1);
                     string choix1 = reader.GetString(2);
                     string choix2 = reader.GetString(3);
@@ -101,33 +101,29 @@ namespace SiteSondage.Models
                     bool choixMultiple = reader.GetBoolean(6);
                     bool etatDuSondage = reader.GetBoolean(7);
                     numeroSecurite = reader.GetInt32(8);
-                    int resultatChoix1 = reader.GetInt32(9);
-                    int resultatChoix2 = reader.GetInt32(10);
-                    int resultatChoix3 = reader.GetInt32(11);
-                    int resultatChoix4 = reader.GetInt32(12);
-                    int nombreDeVotant = reader.GetInt32(13);
+                    //int resultatChoix1 = reader.GetInt32(9);
+                    //int resultatChoix2 = reader.GetInt32(10);
+                    //int resultatChoix3 = reader.GetInt32(11);
+                    //int resultatChoix4 = reader.GetInt32(12);
+                    //int nombreDeVotant = reader.GetInt32(13);
 
 
 
 
-                    ClassSondage sondage = new ClassSondage(idsondage, question, choix1, choix2, choix3, choix4, choixMultiple, etatDuSondage, numeroSecurite);
-                    ClassResultat vote = new ClassResultat(sondage, resultatChoix1, resultatChoix2, resultatChoix3, resultatChoix4, nombreDeVotant);
+                    ClassSondage sondage = new ClassSondage(idSondage, question, choix1, choix2, choix3, choix4, choixMultiple, etatDuSondage, numeroSecurite);
+                    //ClassResultat vote = new ClassResultat(sondage, resultatChoix1, resultatChoix2, resultatChoix3, resultatChoix4, nombreDeVotant);
 
 
-                    return vote;
-                }
-                else
-                {
-                    ClassResultat vote = new ClassResultat();
-                    return vote = null;
-                }
+                    return sondage;
+                
+              
             }
         }
 
         public static void InsererResultatEnBDD(int idSondage, int Choix1, int Choix2, int Choix3, int Choix4)
         {
             int nombreVote = Choix1 + Choix2 + Choix3 + Choix4;
-            InsererNombreDeVotant(idSondage,nombreVote);
+            InsererNombreDeVotant(idSondage, nombreVote);
 
             SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
 
@@ -165,7 +161,7 @@ namespace SiteSondage.Models
 
 
         }
-        public static void MetAJourEtatDuSOndage(ClassResultat sondage)
+        public static void MetAJourEtatDuSOndage(ClassSondage sondage)
         {
             SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
 
@@ -174,7 +170,7 @@ namespace SiteSondage.Models
             SqlCommand requete = new SqlCommand("UPDATE Sondage SET EtatDuSondage = 1  WHERE IdSondage = @idSondage ", connection);
 
 
-            requete.Parameters.AddWithValue("@idSondage", sondage.Vote.IdSondage);
+            requete.Parameters.AddWithValue("@idSondage", sondage.IdSondage);
 
 
             requete.ExecuteNonQuery();
@@ -231,7 +227,7 @@ namespace SiteSondage.Models
                 requete.Parameters.AddWithValue("@nombrevotant", 0);
                 requete.Parameters.AddWithValue("@FKID", idSondage);
                 requete.ExecuteNonQuery();
-                
+
 
             }
 
