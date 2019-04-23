@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteSondage", "SiteSondage\SiteSondage.csproj", "{DC32BB51-CA34-4FFB-A101-D484EFBD84B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestSiteSondage", "UnitTestSiteSondage\UnitTestSiteSondage.csproj", "{0A4890BC-E822-4567-AD39-C23334F1F87F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DC32BB51-CA34-4FFB-A101-D484EFBD84B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC32BB51-CA34-4FFB-A101-D484EFBD84B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC32BB51-CA34-4FFB-A101-D484EFBD84B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A4890BC-E822-4567-AD39-C23334F1F87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4890BC-E822-4567-AD39-C23334F1F87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4890BC-E822-4567-AD39-C23334F1F87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4890BC-E822-4567-AD39-C23334F1F87F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

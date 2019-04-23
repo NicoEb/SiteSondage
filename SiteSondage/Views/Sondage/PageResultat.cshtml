@@ -45,9 +45,10 @@
     </div>
 
     <div style="text-align:right">
-        <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageChoix",new { idSondage = Model.Vote.IdSondage, numeroSecurite = Model.Vote.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">retour vers choix</a>
         <input type="hidden" name="idSondage" value="@Model.Vote.IdSondage" />
         <input type="hidden" name="numeroSecurite" value="@Model.Vote.NumeroSecurite" />
+        <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageVoirResultatEtVote",new { idSondage = Model.Vote.IdSondage, numeroSecurite = Model.Vote.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">retour vers vote</a>
+
     </div>
 
 

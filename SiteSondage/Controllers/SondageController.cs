@@ -1,5 +1,6 @@
 ﻿using SiteSondage.Models;
 using System;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SiteSondage.Controllers
@@ -15,6 +16,11 @@ namespace SiteSondage.Controllers
         {
 
             return View();
+        }
+        public ActionResult PageVoirResultatEtVote(int idSondage)
+        {
+
+            return View(DataAcces.RecupererEnBdd(idSondage));
         }
         public ActionResult PageDejaSupprimer(int idSondage, int numeroSecurite)
         {
@@ -58,21 +64,30 @@ namespace SiteSondage.Controllers
             }
             else
             {
-                return RedirectToAction("PageDejaVoter", new { IdSondage = idSondage , NumeroSecurite = numeroSecurite });
+                return RedirectToAction("PageDejaSupprimer", new { IdSondage = idSondage , NumeroSecurite = numeroSecurite });
             }
 
         }
 
-        public ActionResult RecuperationVoteChoixMultiple(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4)
+        public ActionResult RecuperationVoteChoixMultiple(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4, int numeroSecurite)
         {
+            if (TestSondagevote(Request.Cookies, idSondage))
+            {
+                return RedirectToAction("PageDejaVoter", new { IdSondage = idSondage, NumeroSecurite = numeroSecurite });
+            }
 
             DataAcces.InsererResultatEnBDD(idSondage, ClassResultat.ValeurDuCHoix(ResultatChoix1), ClassResultat.ValeurDuCHoix(ResultatChoix2), ClassResultat.ValeurDuCHoix(ResultatChoix3), ClassResultat.ValeurDuCHoix(ResultatChoix4));
+            SaveCookie(idSondage);
             return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
 
-        public ActionResult RecuperationVoteChoixUnique(int idSondage, string resultatchoix)
+        public ActionResult RecuperationVoteChoixUnique(int idSondage, string resultatchoix, int numeroSecurite)
         {
+            if (TestSondagevote(Request.Cookies, idSondage))
+            {
+                return RedirectToAction("PageDejaVoter", new { IdSondage = idSondage , NumeroSecurite = numeroSecurite });
+            }
             ClassResultat Vote = new ClassResultat(0, 0, 0, 0, idSondage);
             switch (resultatchoix)
             {
@@ -93,6 +108,7 @@ namespace SiteSondage.Controllers
 
 
             DataAcces.InsererResultatEnBDD(idSondage, Vote.ResultatChoix1, Vote.ResultatChoix2, Vote.ResultatChoix3, Vote.ResultatChoix4);
+            SaveCookie(idSondage);
             return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
@@ -125,7 +141,20 @@ namespace SiteSondage.Controllers
 
         }
 
+        public void SaveCookie(int idSondage)
+        {
+            string Votant = Request.UserHostAddress;
+            HttpCookie gestionCookies = new HttpCookie("cookie" + idSondage);
+            gestionCookies.Value = "";
+            gestionCookies.Expires = DateTime.MaxValue;
+            this.Response.Cookies.Add(gestionCookies);
+        }
 
+
+        public static bool TestSondagevote(HttpCookieCollection cookies, int idSondage)
+        {
+            return cookies["cookie" + idSondage] != null;
+        }
 
 
 

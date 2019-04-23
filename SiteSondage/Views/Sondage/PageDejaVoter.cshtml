@@ -17,7 +17,7 @@
         <h1>Vous avez déjà voté, vous ne pouvez pas revoter sur un même sondage </h1>
     </div>
     <div style="text-align:center; margin-left:10%">
-        <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageChoix",new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">retour vers choix</a>
+        <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageVoirResultatEtVote",new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">retour vers choix</a>
         <input type="hidden" name="idSondage" value="@Model.IdSondage" />
         <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
     </div>

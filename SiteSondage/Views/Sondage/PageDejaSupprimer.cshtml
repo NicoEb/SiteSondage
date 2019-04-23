@@ -16,7 +16,7 @@
         <h1>Sondage déjà supprimé</h1>
     </div>
     <div style="text-align:center">
-        <a style="margin-top:2%" href="@Url.Action("PageChoix",new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">retour vers choix</a>
+        <a style="margin-top:2%" href="@Url.Action("PageVoirResultatEtVote",new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">retour vers choix</a>
         <input type="hidden" name="idSondage" value="@Model.IdSondage" />
         <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
     </div>
