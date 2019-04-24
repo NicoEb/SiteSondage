@@ -43,7 +43,7 @@ namespace SiteSondage.Models
             ResultatChoix4 = resultatChoix4;
             NombreDevotant = nombreDevotant;
         }
-
+        // Convertie vote en pourcentage , méthode utilisé dans la page résultat
         public static int PourcentageVote(int nombreVote ,int NombreDevotant)
         {
             int resultat;
@@ -59,6 +59,7 @@ namespace SiteSondage.Models
            
             return resultat; 
         }
+        //Méthode qui donne valeur de 0 ou 1 a la checkbox lorsque que l'on vote en choix multiple
         public static int ValeurDuCHoix(string Parametre)
         {
             int Choix = 0;

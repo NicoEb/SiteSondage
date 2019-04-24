@@ -38,7 +38,7 @@ namespace SiteSondage.Models
 
             }
         }
-        // recupere les resultat depuis le base de donnée
+        // Récupère les resultats depuis le base de donnée
         public static ClassResultat RecupererResultatEnBdd(int idSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -78,7 +78,7 @@ namespace SiteSondage.Models
 
             }
         }
-        // recupère le sondage depuis le base de donnée pour le désactiver
+        // Récupère le sondage depuis le base de donnée pour le désactiver
         public static ClassSondage RecupererSondagePourDesactiver(int idSondage, int numeroSecurite)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -117,10 +117,11 @@ namespace SiteSondage.Models
               
             }
         }
-        // insère resultat du sondage en base de donnée
+        // Insère résultat du sondage en base de donnée en mettant à jour table résultat
         public static void InsererResultatEnBDD(int idSondage, int Choix1, int Choix2, int Choix3, int Choix4)
         {
             int nombreVote = Choix1 + Choix2 + Choix3 + Choix4;
+            
             InsererNombreDeVotant(idSondage, nombreVote);
 
             SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
@@ -141,7 +142,7 @@ namespace SiteSondage.Models
 
 
         }
-        // insère le nombre de votant en base de donnée
+        // Insère le nombre de votant en base de donnée
         public static void InsererNombreDeVotant(int idSondage, int nombreVote)
         {
             SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
@@ -160,7 +161,7 @@ namespace SiteSondage.Models
 
 
         }
-        // désactive sondage en base de donnée
+        // Désactive sondage en base de donnée lui donne la valeur 1 lorsque l'on supprime sondage
         public static void MetAJourEtatDuSOndage(ClassSondage sondage)
         {
             SqlConnection connection = new SqlConnection(ChaineConnexionBDD);
@@ -178,7 +179,7 @@ namespace SiteSondage.Models
 
 
         }
-        // insère sondage en base de donnée
+        // Insère sondage en base de donnée
         public static int InsererEnBDD(ClassSondage nouveauSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -210,11 +211,11 @@ namespace SiteSondage.Models
             }
 
         }
+        //Insère ID du sondage lorsqu'il est crée et initialise en même temps la table résultat à 0 
         public static void InsererIDDansResultat(int idSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
             {
-
 
                 connection.Open();
 

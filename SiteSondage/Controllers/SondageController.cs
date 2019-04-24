@@ -7,42 +7,45 @@ namespace SiteSondage.Controllers
 {
     public class SondageController : Controller
     {
-
+        // Page d'accueil avec lien vers page sondage
         public ActionResult PageAccueil()
         {
             return View();
-        }
+        } 
+        // Page de création du sondage
         public ActionResult PageSondage()
         {
 
             return View();
         }
+        // Page avec lien pour voter et voir résultat
         public ActionResult PageVoirResultatEtVote(int idSondage)
         {
 
             return View(DataAcces.RecupererEnBdd(idSondage));
         }
-        // page qui indique que le sondage est deja supprimer
+        // Page qui indique que le sondage est déjà supprimé
         public ActionResult PageDejaSupprimer(int idSondage, int numeroSecurite)
         {
             ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
             return View(sondage);
 
         }
-        // page qui indique que que le votant a deja voté sur le sondage et qu il ne peut plus revoter
+        // Page qui indique que que le votant a déjà voté sur le sondage et qu'il ne peut plus revoter
         public ActionResult PageDejaVoter(int idSondage , int numeroSecurite)
         {
             ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
             return View(sondage);
             
         }
-        // page ou se situe les liens pour voter , supprimer et voir résultat du sondage
+        // Page ou se situe les liens pour voter , supprimer et voir résultat du sondage
         public ActionResult PageChoix(int idSondage)
         {
 
             return View(DataAcces.RecupererEnBdd(idSondage));
 
         }
+        // Page qui indiquer que le sondage est supprimer
         public ActionResult PageSupprimer(int idSondage, int numeroSecurite)
         {
             ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
@@ -57,7 +60,7 @@ namespace SiteSondage.Controllers
             }
             
         }
-        // page ou le votant vote
+        // Page ou on vote avec vérification si vote pas désactivé
         public ActionResult PageVoter(int idSondage, int numeroSecurite)
         {
             ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
@@ -117,7 +120,7 @@ namespace SiteSondage.Controllers
 
 
 
-        // Recupère en base de donnée les résultats et les affiches dans le view résultat
+        // Récupère en base de donnée les résultats et les affiches dans le view résultat
         public ActionResult PageResultat(int idSondage)
         {
             ClassResultat Sondage = DataAcces.RecupererResultatEnBdd(idSondage);
@@ -127,7 +130,7 @@ namespace SiteSondage.Controllers
             Sondage.PoucentageChoix4 = ClassResultat.PourcentageVote(Sondage.ResultatChoix4, Sondage.NombreDevotant);
             return View(Sondage);
         }
-        // enregiste sondage en base de donnée lorsqu il est crée 
+        // Enregiste sondage en base de donnée lorsqu'il est crée 
         public ActionResult CreationSondage(string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
         {
             bool choixMultiple = ChoixMultiplePeutEtreNull.GetValueOrDefault(false);
