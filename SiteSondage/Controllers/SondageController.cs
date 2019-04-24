@@ -22,18 +22,21 @@ namespace SiteSondage.Controllers
 
             return View(DataAcces.RecupererEnBdd(idSondage));
         }
+        // page qui indique que le sondage est deja supprimer
         public ActionResult PageDejaSupprimer(int idSondage, int numeroSecurite)
         {
             ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
             return View(sondage);
 
         }
+        // page qui indique que que le votant a deja voté sur le sondage et qu il ne peut plus revoter
         public ActionResult PageDejaVoter(int idSondage , int numeroSecurite)
         {
             ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
             return View(sondage);
             
         }
+        // page ou se situe les liens pour voter , supprimer et voir résultat du sondage
         public ActionResult PageChoix(int idSondage)
         {
 
@@ -54,7 +57,7 @@ namespace SiteSondage.Controllers
             }
             
         }
-
+        // page ou le votant vote
         public ActionResult PageVoter(int idSondage, int numeroSecurite)
         {
             ClassSondage sondage = DataAcces.RecupererSondagePourDesactiver(idSondage, numeroSecurite);
@@ -68,7 +71,7 @@ namespace SiteSondage.Controllers
             }
 
         }
-
+        // Récupère les choix du votant lorsque le sondage est à choix multiple
         public ActionResult RecuperationVoteChoixMultiple(int idSondage, string ResultatChoix1, string ResultatChoix2, string ResultatChoix3, string ResultatChoix4, int numeroSecurite)
         {
             if (TestSondagevote(Request.Cookies, idSondage))
@@ -77,11 +80,11 @@ namespace SiteSondage.Controllers
             }
 
             DataAcces.InsererResultatEnBDD(idSondage, ClassResultat.ValeurDuCHoix(ResultatChoix1), ClassResultat.ValeurDuCHoix(ResultatChoix2), ClassResultat.ValeurDuCHoix(ResultatChoix3), ClassResultat.ValeurDuCHoix(ResultatChoix4));
-            SaveCookie(idSondage);
+            SauvegardeDesCookie(idSondage);
             return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
-
+        // Récupère le choix du votant lorsque le sondage est à choix unique
         public ActionResult RecuperationVoteChoixUnique(int idSondage, string resultatchoix, int numeroSecurite)
         {
             if (TestSondagevote(Request.Cookies, idSondage))
@@ -108,13 +111,13 @@ namespace SiteSondage.Controllers
 
 
             DataAcces.InsererResultatEnBDD(idSondage, Vote.ResultatChoix1, Vote.ResultatChoix2, Vote.ResultatChoix3, Vote.ResultatChoix4);
-            SaveCookie(idSondage);
+            SauvegardeDesCookie(idSondage);
             return RedirectToAction("PageResultat", new { IdSondage = idSondage });
         }
 
 
 
-
+        // Recupère en base de donnée les résultats et les affiches dans le view résultat
         public ActionResult PageResultat(int idSondage)
         {
             ClassResultat Sondage = DataAcces.RecupererResultatEnBdd(idSondage);
@@ -124,6 +127,7 @@ namespace SiteSondage.Controllers
             Sondage.PoucentageChoix4 = ClassResultat.PourcentageVote(Sondage.ResultatChoix4, Sondage.NombreDevotant);
             return View(Sondage);
         }
+        // enregiste sondage en base de donnée lorsqu il est crée 
         public ActionResult CreationSondage(string Question, string Choix1, string Choix2, string Choix3, string Choix4, bool? ChoixMultiplePeutEtreNull)
         {
             bool choixMultiple = ChoixMultiplePeutEtreNull.GetValueOrDefault(false);
@@ -140,8 +144,8 @@ namespace SiteSondage.Controllers
 
 
         }
-
-        public void SaveCookie(int idSondage)
+        // Gestion des cookies pour eviter de voter 2 fois pour un même sondage
+        public void SauvegardeDesCookie(int idSondage)
         {
             string Votant = Request.UserHostAddress;
             HttpCookie gestionCookies = new HttpCookie("cookie" + idSondage);
