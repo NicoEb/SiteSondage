@@ -36,7 +36,7 @@
         <div style="margin-top:2%; margin-right:40%">
             <input type="hidden" name="idSondage" value="@Model.IdSondage" />
             <input type="hidden" name="numeroSecurite" value="@Model.NumeroSecurite" />
-            <label for="inputEmail4"></label>
+            <label for="inputEmail4">Veuillez conserver se lien pour pouvoir supprimer le sondage</label>
             <input type="text" class="form-control" id="inputEmail4" value="@Url.Action("PageSupprimer", new { idSondage = Model.IdSondage, numeroSecurite = Model.NumeroSecurite })" />
             <input type="submit" name="Supprimer" value="Supprimer Sondage" class="btn btn-primary btn-lg" style="background-color:tomato" />
         </div>

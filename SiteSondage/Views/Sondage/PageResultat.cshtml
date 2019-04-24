@@ -31,23 +31,23 @@
             }
 
         </b>
-        <b> et nombre de Votants : </b><b>@Model.NombreDevotant</b>
+        <b> et nombre de Votes : </b><b>@Model.NombreDevotant</b>
     </div>
     <div style="text-align: center;margin-top:3%">
         <b> Question du sondage : @Model.Vote.Question</b>
     </div>
 
     <div style="text-align:center">
-        <b style="margin-right:1%">@Model.Vote.Choix1 :</b> <progress style="margin-top:5%" value="@Model.PoucentageChoix1" max="100"></progress>   <b>@Model.PoucentageChoix1 %</b><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix1</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix2 :</b> <progress style="margin-top:3%" value="@Model.PoucentageChoix2" max="100"></progress>   <b>@Model.PoucentageChoix2 %</b><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix2</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix3 :</b> <progress style="margin-top:3%" value="@Model.PoucentageChoix3" max="100"></progress>   <b>@Model.PoucentageChoix3 %</b><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix3</b><br />
-        <b style="margin-right:1%">@Model.Vote.Choix4 :</b> <progress style="margin-top:3%" value="@Model.PoucentageChoix4" max="100"></progress>   <b>@Model.PoucentageChoix4 %</b><b style="margin-left:1%">Nombre de vote : @Model.ResultatChoix4</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix1 :</b> <progress style="margin-top:5%; width: 20%" value="@Model.PoucentageChoix1" max="100"></progress>   <b>@Model.PoucentageChoix1 %</b><b style="margin-left:1%">( @Model.ResultatChoix1 votes)</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix2 :</b> <progress style="margin-top:3%; width: 20%" value="@Model.PoucentageChoix2" max="100"></progress>   <b>@Model.PoucentageChoix2 %</b><b style="margin-left:1%">(@Model.ResultatChoix2 votes)</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix3 :</b> <progress style="margin-top:3%; width: 20%" value="@Model.PoucentageChoix3" max="100"></progress>   <b>@Model.PoucentageChoix3 %</b><b style="margin-left:1%">(@Model.ResultatChoix3 votes)</b><br />
+        <b style="margin-right:1%">@Model.Vote.Choix4 :</b> <progress style="margin-top:3%; width: 20%" value="@Model.PoucentageChoix4" max="100"></progress>   <b>@Model.PoucentageChoix4 %</b><b style="margin-left:1%">(@Model.ResultatChoix4 votes)</b><br />
     </div>
 
     <div style="text-align:right">
         <input type="hidden" name="idSondage" value="@Model.Vote.IdSondage" />
         <input type="hidden" name="numeroSecurite" value="@Model.Vote.NumeroSecurite" />
-        <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageVoirResultatEtVote",new { idSondage = Model.Vote.IdSondage, numeroSecurite = Model.Vote.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">retour vers vote</a>
+        <a style="margin-top:20px;margin-right:100px" href="@Url.Action("PageVoirResultatEtVote",new { idSondage = Model.Vote.IdSondage, numeroSecurite = Model.Vote.NumeroSecurite }))" type="button" class="btn btn-danger btn-lg">Retour</a>
 
     </div>
 

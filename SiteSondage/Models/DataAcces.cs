@@ -4,7 +4,8 @@ namespace SiteSondage.Models
 {
     public class DataAcces
     {
-        const string ChaineConnexionBDD = @"server=.\SQLEXPRESS;Initial Catalog=SondageBDD;Integrated Security=True";
+        const string ChaineConnexionBDD = @"server=ADMIN-PC;Initial Catalog=SondageBDD;Integrated Security=True";
+        // récupere sondage depuis la base de donnée
         public static ClassSondage RecupererEnBdd(int idSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -37,6 +38,7 @@ namespace SiteSondage.Models
 
             }
         }
+        // recupere les resultat depuis le base de donnée
         public static ClassResultat RecupererResultatEnBdd(int idSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -101,17 +103,13 @@ namespace SiteSondage.Models
                     bool choixMultiple = reader.GetBoolean(6);
                     bool etatDuSondage = reader.GetBoolean(7);
                     numeroSecurite = reader.GetInt32(8);
-                    //int resultatChoix1 = reader.GetInt32(9);
-                    //int resultatChoix2 = reader.GetInt32(10);
-                    //int resultatChoix3 = reader.GetInt32(11);
-                    //int resultatChoix4 = reader.GetInt32(12);
-                    //int nombreDeVotant = reader.GetInt32(13);
+                   
 
 
 
 
                     ClassSondage sondage = new ClassSondage(idSondage, question, choix1, choix2, choix3, choix4, choixMultiple, etatDuSondage, numeroSecurite);
-                    //ClassResultat vote = new ClassResultat(sondage, resultatChoix1, resultatChoix2, resultatChoix3, resultatChoix4, nombreDeVotant);
+                   
 
 
                     return sondage;
@@ -178,7 +176,7 @@ namespace SiteSondage.Models
 
 
         }
-
+        // insere sondage en base de donnée
         public static int InsererEnBDD(ClassSondage nouveauSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
@@ -210,6 +208,7 @@ namespace SiteSondage.Models
             }
 
         }
+        //crée la table résultat lorsque l'on crée sondage et insere ID du sondage dans table résultat
         public static void InsererIDDansResultat(int idSondage)
         {
             using (SqlConnection connection = new SqlConnection(ChaineConnexionBDD))
